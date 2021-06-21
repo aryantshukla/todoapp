@@ -1,0 +1,83 @@
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  overflow: hidden;
+  font-family: mukta;
+  align-items: center;
+}
+
+.container {
+  background-color: bisque;
+  width: 40%;
+  height: 70vh;
+  min-height: 400px;
+  padding: 1%;
+  border: 1px grey solid;
+  box-shadow: 0px 0px 20px #fff;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  font-size: large;
+  border-radius: 5%;
+}
+
+.forscroll {
+  overflow-y: scroll;
+}
+
+.forscroll .item {
+  margin: 2%;
+  background-color: lightpink;
+  box-shadow: 0px 0px 4px lightslategrey;
+  border: 1px black solid;
+  border-radius: 5%;
+}
+
+.forscroll .item:hover {
+  box-shadow: 0px 0px 5px 2px green;
+  background-color: lemonchiffon;
+}
+
+section > .item:last-of-type {
+  margin-top: auto;
+  padding-top: 1%;
+}
+.entertext {
+  width: 70%;
+  height: 30px;
+  position: sticky;
+}
+.Addbutton {
+  background-color: cornflowerblue;
+  border: 1px cornflowerblue solid;
+  border-radius: 50%;
+  box-shadow: 3px 1.25px 4px cyan;
+}
+.Addbutton:hover {
+  zoom: 1.2;
+  cursor: pointer;
+  margin: 0px;
+}
+
+.forscroll .item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.item span {
+  margin-left: 2%;
+}
+.flag {
+  margin-left: 3%;
+}
+.flag:checked {
+  box-shadow: 0px 0px 5px 2px green;
+}
+.flag:checked + span {
+  text-decoration: line-through;
+  font-style: italic;
+}
