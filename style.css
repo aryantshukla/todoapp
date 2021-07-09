@@ -1,0 +1,59 @@
+body[data-theme="dark"] {
+  --neon: #39ff14;
+  --p1: orange;
+  --p2: yellow;
+  --p3: white;
+  --dead: white;
+  --onneon: black;
+  --colorhr: red;
+  --btncolor: #39ff14;
+
+  background: black;
+}
+body[data-theme="light"] {
+  --neon: black;
+  --p1: #c02f1d;
+  --p3: #0e5469;
+  --p2: blue;
+  --dead: #565151;
+  --onneon: white;
+  --colorhr: #01172f;
+  --btncolor: #216b82;
+
+  background: white;
+}
+body {
+  position: relative;
+  color: var(--neon);
+  font-family: mukta;
+  height: 100vh;
+}
+
+main {
+  height: 80vh;
+  display: grid;
+  grid-template-columns: 20% auto 20%;
+}
+
+main > * {
+  height: 80vh;
+  overflow-y: scroll;
+}
+hr {
+  border: 1px var(--colorhr) solid;
+}
+.errormsg {
+  position: absolute;
+  bottom: 1rem;
+  width: 80%;
+  background-color: #fce4e4;
+  color: #cc0033;
+  border: 1px solid #fcc2c3;
+  font-weight: bold;
+  height: 3rem;
+  border-radius: 4px;
+  left: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

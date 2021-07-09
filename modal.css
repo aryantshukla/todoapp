@@ -1,0 +1,60 @@
+.commonmodal {
+  z-index: 1;
+  position: absolute;
+  color: var(--neon);
+  overflow-y: scroll;
+  backdrop-filter: blur(1rem);
+  border-radius: 2rem;
+  flex-direction: column;
+  align-items: center;
+  border: 2px #1b2735 solid;
+}
+
+body[data-theme="light"] .commonmodal {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+body[data-theme="dark"] .commonmodal {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.showinfo {
+  margin-left: 25vw;
+  height: 50vh;
+  width: 50vw;
+}
+.modalhidden {
+  display: none;
+}
+.modalshow {
+  display: flex;
+}
+
+.modal p {
+  font-size: 1.5rem;
+  display: block;
+}
+.modal .btncontainer {
+  margin-top: auto;
+  margin-bottom: 2rem;
+}
+.modal em {
+  color: var(--dead);
+}
+.askTime {
+  height: 80vh;
+  width: 97vw;
+  justify-content: center;
+}
+
+.timeform {
+  color: var(--neon);
+  display: flex;
+  flex-direction: column;
+  padding: 5rem;
+}
+.timeform * {
+  margin: 1rem;
+}
+.timeform input {
+  height: 2rem;
+}

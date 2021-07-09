@@ -1,0 +1,52 @@
+body[data-theme="light"] .navbar {
+  background-color: #eee;
+}
+
+.navbar {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+.navbar:hover {
+  box-shadow: 0px 0px 1.5em var(--neon);
+}
+.navbar:hover ~ section {
+  border-left: 0px var(--neon) solid;
+}
+.entertodo {
+  display: flex;
+  flex-direction: column;
+}
+.selectpriority {
+  display: flex;
+  flex-direction: column;
+  padding-left: 2ch;
+}
+.selectpriority > label:hover {
+  text-shadow: 0px 0px 1em var(--neon);
+}
+.entertodo > label > input:not([type="radio"]) {
+  width: 80%;
+}
+.entertodo > label {
+  margin: 1ch;
+}
+label > input:not([type="radio"]):hover {
+  box-shadow: 0px 0px 5px var(--neon);
+}
+
+.btnstyle {
+  margin-top: 3em;
+  background-color: var(--btncolor);
+  color: var(--onneon);
+  width: 10rem;
+  height: 2rem;
+  align-self: center;
+  border-radius: 1em;
+}
+
+.btnstyle:hover {
+  box-shadow: 0px 0px 1em var(--neon);
+}
+.logo {
+  margin: 0px;
+}
