@@ -1,8 +1,8 @@
-import { showAlert } from "./utils/alert"
-import { getSec } from "./utils/timetaken"
+import { showAlert } from "./utils/alert.js"
+import { getSec } from "./utils/timetaken.js"
 const options = document.querySelector('.options') as HTMLElement
 
-function getPriorityNumber(element:HTMLElement) {
+function getPriorityNumber(element: HTMLElement) {
   if (element.classList.contains('p1'))
     return 3
   else if (element.classList.contains('p2'))
@@ -11,7 +11,7 @@ function getPriorityNumber(element:HTMLElement) {
     return 1
 }
 
-function getdate(element:string):number {
+function getdate(element: string): number {
   const obj = JSON.parse(localStorage.getItem(element) as string)
   return getSec(obj.deadLine, true)
 }
@@ -27,7 +27,7 @@ options.addEventListener('click', (event) => {
 
     for (let i = 0; i < allItems.length; i++) {
       const _child = allItems[i]
-      if(_child.parentNode===null)
+      if (_child.parentNode === null)
         continue
       _child.parentNode.removeChild(_child)
     }
@@ -48,8 +48,8 @@ options.addEventListener('click', (event) => {
       multiplierB = 1;
     }
 
-    type sortingPriority = [[number,number],HTMLElement]
-    const arr:sortingPriority[] = []
+    type sortingPriority = [[number, number], HTMLElement]
+    const arr: sortingPriority[] = []
     for (let i = 0; i < divs.length; i++) {
       const divHere = divs[i] as HTMLDivElement
       arr.push([[getPriorityNumber(divHere), i], divHere])
@@ -57,8 +57,8 @@ options.addEventListener('click', (event) => {
     while (divs.length) {
       container.removeChild(divs[0])
     }
-   
-    arr.sort(function (a:sortingPriority, b:sortingPriority):number {
+
+    arr.sort(function (a: sortingPriority, b: sortingPriority): number {
       if (a[0][0] !== b[0][0])
         return multiplierA * a[0][0] + multiplierB * b[0][0]
       return b[0][1] - a[0][1]
@@ -79,11 +79,11 @@ options.addEventListener('click', (event) => {
       multiplierA = -1;
       multiplierB = 1;
     }
-    type sortingDeadline = [[number,number],HTMLElement]
-    const arr:sortingDeadline[] = []
+    type sortingDeadline = [[number, number], HTMLElement]
+    const arr: sortingDeadline[] = []
     for (let i = 0; i < divs.length; i++) {
       const divHere = divs[i] as HTMLDivElement
-      if(divHere.dataset.key === undefined){
+      if (divHere.dataset.key === undefined) {
         showAlert('Program error, task does not have key')
         return
       }

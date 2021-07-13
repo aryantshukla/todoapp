@@ -1,7 +1,7 @@
-import { getDelete } from "./newtask"
-import { showAlert } from "./alert";
-import Efficiency from '../analysis/efficiency'
-import Power from '../analysis/power'
+import { getDelete } from "./newtask.js"
+import { showAlert } from "./alert.js";
+import Efficiency from '../analysis/efficiency.js'
+import Power from '../analysis/power.js'
 
 
 let efficiencyAnalysis = new Efficiency();
@@ -72,6 +72,7 @@ export function removeTask(_key: string, event: Event) {
 
         newDiv.classList.add('taskItem', 'done')
         newDiv.innerHTML = getDelete(divToDelete)
+        newDiv.dataset.key = _key
         taskCompleted.append(newDiv)
 
         efficiencyAnalysis.addNewFinishedItem(iTime, timeTaken)

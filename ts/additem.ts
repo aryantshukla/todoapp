@@ -1,16 +1,14 @@
-import { getNewTask, reset } from './utils/newtask'
+import { getNewTask, reset } from './utils/newtask.js'
 import { Task } from './interfaces/interfaces'
 let alertNotified = 0;
-const btn = document.querySelector('.btn') as HTMLButtonElement
+const btn = document.querySelector('.submitTask') as HTMLButtonElement
 const resetbtn = document.querySelector('.reset') as HTMLButtonElement
 
 
-
 btn.addEventListener('click', (event) => {
-
   event.preventDefault();
 
-  const taskName =(document.getElementById('taskName]') as HTMLInputElement).value
+  const taskName = (document.getElementById('taskName') as HTMLInputElement).value
   const deadLine = (document.getElementById('deadLine') as HTMLInputElement).value
   const timeRequired = (document.getElementById('timeRequired') as HTMLInputElement).value
   const description = (document.getElementById('description') as HTMLInputElement).value
@@ -19,8 +17,8 @@ btn.addEventListener('click', (event) => {
   const medium = document.getElementById('medium') as HTMLInputElement
 
   if (!taskName || !deadLine || !timeRequired || !description) {
-    if (alertNotified){ 
-      if(navbar.lastElementChild){
+    if (alertNotified) {
+      if (navbar.lastElementChild) {
         navbar.lastElementChild.remove();
       }
     }
@@ -43,7 +41,7 @@ btn.addEventListener('click', (event) => {
   }
 
   if (alertNotified && navbar.lastElementChild) {
-   navbar.lastElementChild.remove();
+    navbar.lastElementChild.remove();
   }
 
   let priority = 'LOW'
@@ -54,7 +52,7 @@ btn.addEventListener('click', (event) => {
 
   const taskContainer = document.querySelector('.taskContainer') as HTMLElement
   const key = ((new Date()).valueOf()).toString();
-  const newItem:Task = {
+  const newItem: Task = {
     taskName,
     priority,
     deadLine,
@@ -69,7 +67,6 @@ btn.addEventListener('click', (event) => {
   taskContainer.append(
     getNewTask(newItem)
   )
-
   reset();
 
 })

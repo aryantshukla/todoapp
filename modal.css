@@ -28,7 +28,7 @@ body[data-theme="dark"] .commonModal {
   display: flex;
 }
 
-.modal div {
+.showInfo div {
   font-size: 1.5rem;
   margin-top: 2rem;
   display: flex;
@@ -36,10 +36,10 @@ body[data-theme="dark"] .commonModal {
   justify-content: space-around;
 }
 
-.modal div em {
+.showInfo div em {
   flex: 2;
 }
-.modal div input {
+.showInfo div input {
   flex: 3;
 }
 
@@ -50,7 +50,7 @@ body[data-theme="dark"] .commonModal {
   width: 100%;
   justify-content: space-evenly;
 }
-.modal em {
+.showInfo em {
   color: var(--dead);
 }
 .askTime {
@@ -73,7 +73,7 @@ body[data-theme="dark"] .commonModal {
   height: 2rem;
   font-size: 1rem;
 }
-.modal input {
+.showInfo input {
   height: 100%;
   font-size: 1rem;
 }

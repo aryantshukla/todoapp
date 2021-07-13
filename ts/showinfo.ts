@@ -1,10 +1,10 @@
-import { showModal } from './utils/showModal'
-import { removeTask } from './utils/timetaken'
-import { showAlert, isKeyUndefined } from './utils/alert'
+import { showModal } from './utils/showModal.js'
+import { removeTask } from './utils/timetaken.js'
+import { showAlert, isKeyUndefined } from './utils/alert.js'
 
 
 const taskList = document.querySelector('.taskList') as HTMLElement
-const modal = document.querySelector('.modal') as HTMLElement
+const modal = document.querySelector('.showInfo') as HTMLElement
 const blurContainer = document.querySelector('.blurContainer') as HTMLElement
 
 const hidemodal = () => {
@@ -65,12 +65,13 @@ taskList.addEventListener('click', (event) => {
     }
     const divToDelete = eventTarget.parentElement.parentElement
     const _key = divToDelete.dataset.key
+    console.log(divToDelete)
     if (divToDelete.parentNode === null) {
       showAlert('couldnt find parent of div to delete')
       return
     }
     if (isKeyUndefined(_key)) {
-      showAlert('key not found,Error')
+      showAlert('keyses not found,Error')
       return
     }
     divToDelete.parentNode.removeChild(divToDelete)
@@ -105,7 +106,7 @@ modal.addEventListener('click', (event) => {
       const newTaskName = (modal.querySelector('.modalTaskName input') as HTMLInputElement).value
       const newDesctiption = (modal.querySelector('.modalDescription input') as HTMLInputElement).value
       const newTimeRequired = (modal.querySelector('.modalIdealTime input') as HTMLInputElement).value
-      const newDeadLine = (modal.querySelector('.modaldeadLine input') as HTMLInputElement).value
+      const newDeadLine = (modal.querySelector('.modalDeadline input') as HTMLInputElement).value
 
       if (newTaskName.length === 0)
         throw new Error('task name is empty')
@@ -115,7 +116,7 @@ modal.addEventListener('click', (event) => {
         throw new Error('Time required is empty')
       const _key = modal.dataset.key
       if (isKeyUndefined(_key)) {
-        showAlert('key not found,Error')
+        showAlert('keys not found,Error')
         return
       }
 

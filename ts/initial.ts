@@ -1,4 +1,4 @@
-import { getNewTask, getNewDoneTask } from './utils/newtask'
+import { getNewTask, getNewDoneTask } from './utils/newtask.js'
 
 const notCompleted = document.querySelector('.notCompleted') as HTMLElement
 const completed = document.querySelector('.completed') as HTMLElement

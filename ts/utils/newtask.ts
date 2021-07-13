@@ -1,5 +1,5 @@
-import { Task, newDoneTask } from '../interfaces/interfaces'
-import { showAlert } from './alert'
+import { Task, newDoneTask } from '../interfaces/interfaces.js'
+import { showAlert } from './alert.js'
 
 function getPriority(priority: string): string {
   switch (priority) {

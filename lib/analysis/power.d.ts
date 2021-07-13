@@ -1,11 +1,11 @@
-import { getSec } from "../utils/timetaken";
+import { getSec } from "../utils/timetaken.js";
 export default class Power {
     private power;
     private rating_deviation;
     private idealTime;
     private takenTime;
     private deadLine;
-    private finishline;
+    private finishLine;
     private alpha;
     constructor();
     calculateAlpha(): void;

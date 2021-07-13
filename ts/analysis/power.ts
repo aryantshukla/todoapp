@@ -1,4 +1,4 @@
-import { getSec } from "../utils/timetaken";
+import { getSec } from "../utils/timetaken.js";
 
 
 export default class Power {
@@ -9,7 +9,7 @@ export default class Power {
   private idealTime: number[]
   private takenTime: number[]
   private deadLine: number[]
-  private finishline: number[]
+  private finishLine: number[]
   private alpha: number
 
   constructor() {
@@ -18,7 +18,7 @@ export default class Power {
     this.idealTime = []
     this.takenTime = []
     this.deadLine = []
-    this.finishline = []
+    this.finishLine = []
     this.alpha = 1 / Math.sqrt(1 + (3 * (0.0051 ** 2) * (this.rating_deviation ** 2) / (Math.PI ** 2)))
 
     if (localStorage.power) {
@@ -33,8 +33,8 @@ export default class Power {
     if (localStorage.deadLine) {
       this.deadLine.push(Number(localStorage.deadLine))
     }
-    if (localStorage.finishline) {
-      this.finishline.push(Number(localStorage.finishline))
+    if (localStorage.finishLine) {
+      this.finishLine.push(Number(localStorage.finishLine))
     }
 
     this.updatePower();
@@ -49,7 +49,7 @@ export default class Power {
 
   eloEfficiency(iTime: number, tTime: number, kFactor: number) {
     let Ea: number = 0;
-    let efficiency = 0;
+    let efficiency: number = 0;
 
     Ea = 1 / (1 + 10 ** ((iTime / 60 - tTime / 60) / 1200))
 
@@ -68,36 +68,36 @@ export default class Power {
     this.idealTime.push(iTime)
     this.takenTime.push(tTime)
     this.deadLine.push(this.getSec(dLine, true))
-    this.finishline.push(this.getSec(fline))
+    this.finishLine.push(this.getSec(fline))
 
     localStorage.setItem('idealTime', iTime.toString())
     localStorage.setItem('takenTime', tTime.toString())
     localStorage.setItem('deadLine', this.deadLine[0].toString())
-    localStorage.setItem('finishline', this.finishline[0].toString())
+    localStorage.setItem('finishLine', this.finishLine[0].toString())
 
-    if (this.finishline.length % 2 !== 0)
+    if (this.finishLine.length % 2 !== 0)
       return
 
-    let sigmaSum = 0;
+    let sigmaSum: number = 0;
     this.calculateAlpha();
-    let len = this.finishline.length
+    let len: number = this.finishLine.length
 
     for (let i = 1; i <= 2; i++) {
 
       const iTime = this.idealTime[len - i]
-      const ttime = this.takenTime[len - i]
+      const tTime = this.takenTime[len - i]
 
-      let victorySum = 0;
-      if (this.finishline[len - i] <= this.deadLine[len - 1])
+      let victorySum: number = 0;
+      if (this.finishLine[len - i] <= this.deadLine[len - 1])
         victorySum++;
-      if (ttime <= iTime)
+      if (tTime <= iTime)
         victorySum++;
-      sigmaSum += this.alpha * (victorySum - this.eloEfficiency(iTime, ttime, this.alpha))
+      sigmaSum += this.alpha * (victorySum - this.eloEfficiency(iTime, tTime, this.alpha))
     }
-
+    sigmaSum /= 10;
     this.rectify();
+    this.power = this.power + (this.rating_deviation ** 2) * sigmaSum
 
-    this.power += (this.rating_deviation ** 2) * sigmaSum
     this.updatePower();
   }
 
@@ -105,11 +105,11 @@ export default class Power {
     this.idealTime.splice(0)
     this.takenTime.splice(0)
     this.deadLine.splice(0)
-    this.finishline.splice(0)
+    this.finishLine.splice(0)
     localStorage.removeItem('itealTime')
     localStorage.removeItem('takenTime')
     localStorage.removeItem('deadLine')
-    localStorage.removeItem('finishline')
+    localStorage.removeItem('finishLine')
   }
 
   updatePower() {
