@@ -16,6 +16,15 @@ const hidemodal = () => {
 taskList.addEventListener('click', (event) => {
 
   const eventTarget = event.target
+  console.log(eventTarget)
+  if (eventTarget.classList.contains('taskItem')) {
+    if (eventTarget.classList.contains('dead')) {
+      return
+    }
+    const _key = event.target.dataset.key
+    showModal(JSON.parse(localStorage.getItem(_key)))
+    event.stopPropagation();
+  }
   if (eventTarget.classList.contains('info')) {
     const _key = event.target.parentElement.parentElement.dataset.key
     showModal(JSON.parse(localStorage.getItem(_key)))
