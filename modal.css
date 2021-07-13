@@ -32,9 +32,12 @@ body[data-theme="dark"] .commonModal {
   font-size: 1.5rem;
   display: block;
 }
-.modal .btnContainer {
+.commonModal .btnContainer {
   margin-top: auto;
   margin-bottom: 2rem;
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
 }
 .modal em {
   color: var(--dead);

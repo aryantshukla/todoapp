@@ -25,7 +25,7 @@ function askForTime(key) {
         modal.classList.toggle('modalShow')
         blurContainer.classList.remove('blur')
         modal.removeEventListener('click', handleClick)
-        resolve(-1);
+        resolve(-1)
       }
       if (event.target === submitbtn) {
         modal.classList.toggle('modalHidden')
@@ -38,11 +38,21 @@ function askForTime(key) {
         resolve(val)
       }
     }
+
+    window.addEventListener('click', (event) => {
+      if (modal.classList.contains('modalShow') && event.target.closest('.commonModal') == null) {
+        modal.classList.toggle('modalHidden')
+        modal.classList.toggle('modalShow')
+        blurContainer.classList.remove('blur')
+        resolve(-1)
+      }
+    })
     modal.addEventListener('click', handleClick)
 
   })
 }
-export function removeTask(divToDelete, _key) {
+export function removeTask(divToDelete, _key, event) {
+  event.stopPropagation();
   askForTime(_key).then(timeTaken => {
 
     if (timeTaken > 0) {

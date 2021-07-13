@@ -11,9 +11,6 @@ const hidemodal = () => {
   modal.classList.add('modalHidden')
   modal.classList.remove('modalShow')
   blurContainer.classList.remove('blur')
-  removeLastChild(modal.querySelector('.modaltaskName'))
-  removeLastChild(modal.querySelector('.modaldescription'))
-  removeLastChild(modal.querySelector('.modalidealtime'))
 }
 
 taskList.addEventListener('click', (event) => {
@@ -27,7 +24,7 @@ taskList.addEventListener('click', (event) => {
   else if (eventTarget.classList.contains('markDone')) {
     const divToDelete = event.target.parentElement.parentElement
     const _key = divToDelete.dataset.key;
-    removeTask(divToDelete, _key)
+    removeTask(divToDelete, _key, event)
   }
   else if (eventTarget.classList.contains('toDelete')) {
     const divToDelete = event.target.parentElement.parentElement
@@ -54,7 +51,7 @@ modal.addEventListener('click', (event) => {
     hidemodal();
     const _key = modal.dataset.key
     const divToDelete = document.querySelector(`.taskItem[data-key='${_key}']`)
-    removeTask(divToDelete, _key)
+    removeTask(divToDelete, _key, event)
   }
 
   if (event.target.classList.contains('saveChanges')) {
@@ -99,7 +96,6 @@ modal.addEventListener('click', (event) => {
 
 window.addEventListener('click', (event) => {
   if (modal.classList.contains('modalShow') && event.target.closest('.commonModal') == null) {
-    console.log('wnindow touch')
     hidemodal()
   }
 })

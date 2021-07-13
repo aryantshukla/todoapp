@@ -2,10 +2,10 @@ export function showModal({ taskName, description, deadLine, timeRequired, key }
 
   const modal = document.querySelector('.modal')
   const blurContainer = document.querySelector('.blurContainer')
-  modal.querySelector('.modaltaskName').append(addSpanOfInfo(taskName))
-  modal.querySelector('.modaldescription').append(addSpanOfInfo(description))
-  modal.querySelector('.modalidealtime').append(addSpanOfInfo(timeRequired))
-  modal.querySelector('.modaldeadLine').textContent = deadLine
+  modal.querySelector('.modaltaskName span').value = taskName
+  modal.querySelector('.modaldescription span').textContent = description
+  modal.querySelector('.modalidealtime span').textContent = timeRequired
+  modal.querySelector('.modaldeadLine span').textContent = deadLine
   modal.dataset.key = key
 
   modal.classList.toggle('modalHidden')

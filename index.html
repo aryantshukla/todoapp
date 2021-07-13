@@ -32,10 +32,22 @@
   </head>
   <body data-theme="light">
     <div class="commonModal modal showInfo modalHidden">
-      <p class="modaltaskName"><em>Task Name: </em></p>
-      <p class="modaldescription"><em>Description: </em></p>
-      <p class="modalidealtime"><em>Ideal Time to Finish (in minutes): </em></p>
-      <p class="modaldeadLine"></p>
+      <p class="modaltaskName">
+        <em>Task Name: </em>
+        <span contenteditable></span>
+      </p>
+      <p class="modaldescription">
+        <em>Description: </em>
+        <span contenteditable></span>
+      </p>
+      <p class="modalidealtime">
+        <em>Ideal Time to Finish (in minutes): </em>
+        <span contenteditable></span>
+      </p>
+      <p class="modaldeadLine">
+        <em>Deadline </em>
+        <span></span>
+      </p>
       <div class="btnContainer">
         <button type="close" class="close btnStyle">Close</button>
         <button class="markDone btnStyle">Mark as Done</button>
@@ -53,7 +65,7 @@
           id="timetakne"
           placeholder="Please Enter Time taken to finish task"
         />
-        <div>
+        <div class="btnContainer">
           <button class="cancelTime btnStyle">Cancel</button>
           <button class="submitTime btnStyle" type="submit">Submit</button>
         </div>
@@ -131,13 +143,13 @@
           <hr />
           <section class="specContainer">
             <div class="spec">
-              Efficiency Score:<br />
+              Efficiency Score:
               <div class="rate">
                 <div class="efficiency">0</div>
               </div>
             </div>
             <div class="spec">
-              Power:<br />
+              Power:
               <div class="rate">
                 <div class="power">1050</div>
               </div>
