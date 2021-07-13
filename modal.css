@@ -61,3 +61,8 @@ body[data-theme="dark"] .commonModal {
 .timeForm input {
   height: 2rem;
 }
+.commonModal input {
+  height: 100%;
+  width: auto;
+  font-size: 1rem;
+}

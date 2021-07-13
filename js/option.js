@@ -37,23 +37,26 @@ options.addEventListener('click', (event) => {
     const container = document.querySelector('.taskContainer');
     const divs = container.children
 
-    const optionForSorting = eventTarget.classList.contains('op4')
+    const optionForSorting = (eventTarget.id !== 'op4')
 
     let multiplierA = 1, multiplierB = -1;
-    if (!optionForSorting) {
+    if (optionForSorting) {
       multiplierA = -1;
       multiplierB = 1;
     }
 
     const arr = []
     for (let i = 0; i < divs.length; i++) {
-      arr.push([getPriorityNumber(divs[i]), divs[i]])
+      arr.push([[getPriorityNumber(divs[i]), i], divs[i]])
     }
     while (divs.length) {
       container.removeChild(divs[0])
     }
     arr.sort(function (a, b) {
-      return multiplierA * a[0] + multiplierB * b[0]
+      if (a[0][0] !== b[0][0])
+        return multiplierA * a[0][0] + multiplierB * b[0][0]
+      console.log('asdf', multiplierA, multiplierB)
+      return b[0][1] - a[0][1]
     })
     for (let i = arr.length - 1; i >= 0; i--) {
       container.append(arr[i][1])
@@ -74,13 +77,15 @@ options.addEventListener('click', (event) => {
 
     const arr = []
     for (let i = 0; i < divs.length; i++) {
-      arr.push([getdate(divs[i].dataset.key), divs[i]])
+      arr.push([[getdate(divs[i].dataset.key), i], divs[i]])
     }
     while (divs.length) {
       container.removeChild(divs[0])
     }
     arr.sort(function (a, b) {
-      return multiplierA * a[0] + multiplierB * b[0]
+      if (a[0][0] !== b[0][0])
+        return multiplierA * a[0][0] + multiplierB * b[0][0]
+      return a[0][1] - b[0][1]
     })
     for (let i = 0; i < arr.length; i++) {
       container.append(arr[i][1])

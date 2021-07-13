@@ -18,7 +18,7 @@ taskList.addEventListener('click', (event) => {
   const eventTarget = event.target
   console.log(eventTarget)
   if (eventTarget.classList.contains('taskItem')) {
-    if (eventTarget.classList.contains('dead')) {
+    if (eventTarget.classList.contains('done')) {
       return
     }
     const _key = event.target.dataset.key
@@ -66,9 +66,10 @@ modal.addEventListener('click', (event) => {
   if (event.target.classList.contains('saveChanges')) {
 
     try {
-      const newtaskName = modal.querySelector('.modaltaskName span').textContent
-      const newDesctiption = modal.querySelector('.modaldescription span').textContent
-      const newTimeRequired = modal.querySelector('.modalidealtime span').textContent
+      const newtaskName = modal.querySelector('.modaltaskName input').value
+      const newDesctiption = modal.querySelector('.modaldescription input').value
+      const newTimeRequired = modal.querySelector('.modalidealtime input').value
+      const newDeadLine = modal.querySelector('.modaldeadLine input').value
 
       if (newtaskName.length === 0)
         throw new Error('task name is empty')
@@ -85,6 +86,7 @@ modal.addEventListener('click', (event) => {
       newObj.taskName = newtaskName
       newObj.description = newDesctiption
       newObj.timeRequired = newTimeRequired
+      newObj.deadLine = newDeadLine
 
       const taskItemConsidered = document.querySelector(`.taskItem[data-key='${_key}']`)
       taskItemConsidered.querySelector('p').textContent = newObj.taskName
