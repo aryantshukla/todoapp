@@ -37,12 +37,12 @@ body[data-theme="light"] .analysis {
   flex-direction: column;
   align-content: center;
 }
-.choice {
+.option {
   flex: 1;
   margin-top: auto;
   margin-bottom: auto;
 }
-.choice:hover {
+.option:hover {
   cursor: pointer;
   text-shadow: 0px 0px 1em var(--btnColor);
 }

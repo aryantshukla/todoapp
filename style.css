@@ -5,7 +5,7 @@ body[data-theme="dark"] {
   --p3: white;
   --dead: white;
   --onNeon: black;
-  --colorhr: red;
+  --colorHR: red;
   --btnColor: #39ff14;
 
   background: black;
@@ -17,7 +17,7 @@ body[data-theme="light"] {
   --p2: blue;
   --dead: #565151;
   --onNeon: white;
-  --colorhr: #01172f;
+  --colorHR: #01172f;
   --btnColor: #216b82;
 
   background: white;
@@ -29,18 +29,18 @@ body {
   height: 100vh;
 }
 
-main {
+.application {
   height: 80vh;
   display: grid;
   grid-template-columns: 20% auto 20%;
 }
 
-main > * {
+.application > * {
   height: 80vh;
   overflow-y: scroll;
 }
 hr {
-  border: 1px var(--colorhr) solid;
+  border: 1px var(--colorHR) solid;
 }
 .errMsg {
   position: absolute;
@@ -56,4 +56,7 @@ hr {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.blur {
+  filter: blur(1em);
 }

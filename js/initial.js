@@ -4,18 +4,24 @@ const notCompleted = document.querySelector('.notCompleted')
 const completed = document.querySelector('.completed')
 
 const keys = Object.keys(localStorage)
+let values = []
 
 for (let key of keys) {
-
-  if (key === 'efficiency')
-    continue;
   const item = JSON.parse(localStorage.getItem(key))
+  if (item.done in [1, 0]) {
+    values.push([key, item])
+  }
+}
 
+values.sort(function (a, b) {
+  return a[0] - b[0]
+})
+
+values.forEach(([_, item]) => {
   if (item.done === 1) {
     completed.append(getNewDoneTask(item))
   }
-  else if (item.done === 0) {
+  else {
     notCompleted.append(getNewTask(item))
   }
-
-}
+})

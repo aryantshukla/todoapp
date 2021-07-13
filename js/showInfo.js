@@ -1,16 +1,22 @@
-import { getDelete } from './utils/newtask.js'
 import { showModal } from './utils/showModal.js'
-import { askForTime } from './utils/timetaken.js'
+import { removeTask } from './utils/timetaken.js'
 import { showAlert } from './utils/alert.js'
-import Efficiency from './analysis/efficiency.js'
-import Power from './analysis/power.js'
 
-const taskContainer = document.querySelector('.taskList')
-const taskCompleted = document.querySelector('.completed')
-let efficiencyAnalysis = new Efficiency();
-let powerAnalysis = new Power();
 
-taskContainer.addEventListener('click', (event) => {
+const taskList = document.querySelector('.taskList')
+const modal = document.querySelector('.modal')
+const blurContainer = document.querySelector('.blurContainer')
+
+const hidemodal = () => {
+  modal.classList.add('modalHidden')
+  modal.classList.remove('modalShow')
+  blurContainer.classList.remove('blur')
+  removeLastChild(modal.querySelector('.modaltaskName'))
+  removeLastChild(modal.querySelector('.modaldescription'))
+  removeLastChild(modal.querySelector('.modalidealtime'))
+}
+
+taskList.addEventListener('click', (event) => {
 
   const eventTarget = event.target
   if (eventTarget.classList.contains('info')) {
@@ -18,35 +24,10 @@ taskContainer.addEventListener('click', (event) => {
     showModal(JSON.parse(localStorage.getItem(_key)))
     event.stopPropagation();
   }
-  else if (eventTarget.classList.contains('markdone')) {
+  else if (eventTarget.classList.contains('markDone')) {
     const divToDelete = event.target.parentElement.parentElement
     const _key = divToDelete.dataset.key;
-    askForTime(_key).then(timeTaken => {
-
-      if (timeTaken > 0) {
-        const newDiv = document.createElement('div')
-        const divToDeleteData = JSON.parse(localStorage.getItem(_key))
-        const iTime = divToDeleteData.timeRequired;
-        const fline = (new Date()).toLocaleDateString('en-GB')
-        const fLine = divToDeleteData.deadLine;
-
-        divToDeleteData.done = 1;
-
-        localStorage.setItem(_key, JSON.stringify(divToDeleteData))
-
-        newDiv.classList.add('taskItem', 'done')
-        newDiv.innerHTML = getDelete(divToDelete)
-        taskCompleted.append(newDiv)
-
-        efficiencyAnalysis.addNewFinishedItem(iTime, timeTaken)
-        powerAnalysis.addNewItem(iTime, timeTaken, fLine, fline)
-
-        divToDelete.parentNode.removeChild(divToDelete)
-      }
-    }).catch(error => {
-      showAlert(error)
-    })
-
+    removeTask(divToDelete, _key)
   }
   else if (eventTarget.classList.contains('toDelete')) {
     const divToDelete = event.target.parentElement.parentElement
@@ -61,16 +42,6 @@ function removeLastChild(element) {
   element.removeChild(element.lastChild)
 }
 
-const hidemodal = () => {
-  modal.classList.toggle('modalHidden')
-  modal.classList.toggle('modalShow')
-  removeLastChild(modal.querySelector('.modaltaskName'))
-  removeLastChild(modal.querySelector('.modaldescription'))
-  removeLastChild(modal.querySelector('.modalidealtime'))
-}
-
-const modal = document.querySelector('.modal')
-
 modal.addEventListener('click', (event) => {
 
   if (event.target.classList.contains('close')) {
@@ -79,7 +50,14 @@ modal.addEventListener('click', (event) => {
     }
   }
 
-  if (event.target.classList.contains('savechang')) {
+  if (event.target.classList.contains('markDone')) {
+    hidemodal();
+    const _key = modal.dataset.key
+    const divToDelete = document.querySelector(`.taskItem[data-key='${_key}']`)
+    removeTask(divToDelete, _key)
+  }
+
+  if (event.target.classList.contains('saveChanges')) {
 
     try {
       const newtaskName = modal.querySelector('.modaltaskName span').textContent
@@ -105,9 +83,6 @@ modal.addEventListener('click', (event) => {
       const taskItemConsidered = document.querySelector(`.taskItem[data-key='${_key}']`)
       taskItemConsidered.querySelector('p').textContent = newObj.taskName
 
-      console.log(taskItemConsidered)
-
-      console.log('newobj ', newObj)
       localStorage.setItem(_key, JSON.stringify(newObj))
 
     }
@@ -120,10 +95,11 @@ modal.addEventListener('click', (event) => {
     }
   }
 })
-window.addEventListener('click', (event) => {
 
-  if (modal.classList.contains('modalShow') && event.target.closest('.modal') == null) {
-    modal.classList.toggle('modalHidden')
-    modal.classList.toggle('modalShow')
+
+window.addEventListener('click', (event) => {
+  if (modal.classList.contains('modalShow') && event.target.closest('.commonModal') == null) {
+    console.log('wnindow touch')
+    hidemodal()
   }
 })

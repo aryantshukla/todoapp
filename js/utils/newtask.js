@@ -6,14 +6,6 @@ function getPriority(priority) {
   }
 }
 
-function defaultContext() {
-  return `<hr class="divisor">  
-  <span>
-    <i class="material-icons toDelete">	&#xe872; </i>
-  </span>`
-}
-
-
 export function getNewTask({ taskName, priority, deadLine, timeRequired, description, key }) {
 
   const div = document.createElement('div')
@@ -32,7 +24,7 @@ export function getNewTask({ taskName, priority, deadLine, timeRequired, descrip
 
   const span2 = document.createElement('span')
   span2.innerHTML = `<i class="material-icons info">info_outline</i>
-                    <i class="material-icons markdone">&#xe876; </i>  `
+                    <i class="material-icons markDone">&#xe876; </i>  `
 
   div.append(paragraph)
   div.append(hr)
@@ -61,11 +53,10 @@ export function getNewDoneTask({ taskName, key }) {
 }
 
 export function reset() {
-  document.querySelector('input[name=deadLine]').value = ""
-  document.querySelector('input[name=taskName]').value = ""
-  document.querySelector('input[name=deadLine]').value = ""
-  document.querySelector('input[name=timeRequired]').value = ""
-  document.querySelector('input[name=description]').value = ""
+  document.getElementById("deadLine").value = ""
+  document.getElementById("taskName").value = ""
+  document.getElementById("timeRequired").value = ""
+  document.getElementById("description").value = ""
 }
 
 export function getDelete(divToDelete) {

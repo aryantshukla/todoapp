@@ -1,6 +1,7 @@
 export function showModal({ taskName, description, deadLine, timeRequired, key }) {
 
   const modal = document.querySelector('.modal')
+  const blurContainer = document.querySelector('.blurContainer')
   modal.querySelector('.modaltaskName').append(addSpanOfInfo(taskName))
   modal.querySelector('.modaldescription').append(addSpanOfInfo(description))
   modal.querySelector('.modalidealtime').append(addSpanOfInfo(timeRequired))
@@ -9,6 +10,7 @@ export function showModal({ taskName, description, deadLine, timeRequired, key }
 
   modal.classList.toggle('modalHidden')
   modal.classList.toggle('modalShow')
+  blurContainer.classList.toggle('blur')
 
 }
 

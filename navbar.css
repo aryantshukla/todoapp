@@ -27,7 +27,7 @@ body[data-theme="light"] .navbar {
 .enterTask > label > input:not([type="radio"]) {
   width: 80%;
 }
-.enterTask > label {
+.enterTask > .formElement {
   margin: 1ch;
 }
 label > input:not([type="radio"]):hover {
@@ -49,4 +49,9 @@ label > input:not([type="radio"]):hover {
 }
 .logo {
   margin: 0px;
+}
+
+.formElement {
+  display: flex;
+  flex-direction: column;
 }

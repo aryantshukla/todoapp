@@ -18,10 +18,9 @@ function getdate(element) {
 options.addEventListener('click', (event) => {
 
   const eventTarget = event.target
-  if (!eventTarget.classList.contains('choice'))
+  if (!eventTarget.classList.contains('option'))
     return
-
-  if (eventTarget.classList.contains('op1')) {
+  if (eventTarget.id === 'op1') {
 
     const allItems = document.querySelectorAll('.taskItem')
 
@@ -34,7 +33,7 @@ options.addEventListener('click', (event) => {
     }
 
   }
-  if (eventTarget.classList.contains('op4') || eventTarget.classList.contains('op5')) {
+  if (eventTarget.id === 'op4' || eventTarget.id === 'op5') {
     const container = document.querySelector('.taskContainer');
     const divs = container.children
 
@@ -56,13 +55,12 @@ options.addEventListener('click', (event) => {
     arr.sort(function (a, b) {
       return multiplierA * a[0] + multiplierB * b[0]
     })
-    console.log(arr)
     for (let i = arr.length - 1; i >= 0; i--) {
       container.append(arr[i][1])
     }
   }
 
-  if (eventTarget.classList.contains('op6') || eventTarget.classList.contains('op7')) {
+  if (eventTarget.id === 'op6' || eventTarget.id === 'op7') {
     const container = document.querySelector('.notCompleted');
     const divs = container.children
 
