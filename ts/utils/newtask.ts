@@ -9,7 +9,7 @@ function getPriority(priority: string): string {
   }
 }
 
-export function getNewTask({ taskName, priority, deadLine, timeRequired, description, key }: Task) {
+export function getNewTask({ taskName, priority, deadLine, key }: Task) {
 
   const div = document.createElement('div')
   div.dataset.key = key;
