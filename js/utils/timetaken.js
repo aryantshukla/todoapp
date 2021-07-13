@@ -51,7 +51,8 @@ function askForTime(key) {
 
   })
 }
-export function removeTask(divToDelete, _key, event) {
+export function removeTask(_key, event) {
+  const divToDelete = document.querySelector(`.taskItem[data-key='${_key}']`)
   event.stopPropagation();
   askForTime(_key).then(timeTaken => {
 

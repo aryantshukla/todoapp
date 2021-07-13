@@ -34,7 +34,7 @@ label > input:not([type="radio"]):hover {
   box-shadow: 0px 0px 5px var(--mainColor);
 }
 
-.btnStyle {
+.btn {
   margin-top: 3em;
   background-color: var(--btnColor);
   color: var(--onNeon);
@@ -44,7 +44,7 @@ label > input:not([type="radio"]):hover {
   border-radius: 1em;
 }
 
-.btnStyle:hover {
+.btn:hover {
   box-shadow: 0px 0px 1em var(--mainColor);
 }
 .logo {

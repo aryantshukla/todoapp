@@ -1,6 +1,6 @@
 import { getNewTask, reset } from './utils/newtask.js'
 let alertNotified = 0;
-const btn = document.querySelector('.btn')
+const btn = document.querySelector('.submitTask')
 const resetbtn = document.querySelector('.reset')
 
 btn.addEventListener('click', (event) => {

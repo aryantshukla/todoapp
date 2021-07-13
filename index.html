@@ -32,26 +32,26 @@
   </head>
   <body data-theme="light">
     <div class="commonModal modal showInfo modalHidden">
-      <div class="modaltaskName">
+      <div class="modalTaskName">
         <em>Task Name: </em>
         <input></input>
       </div>
-      <div class="modaldescription">
+      <div class="modalDescription">
         <em>Description: </em>
         <input></input>
       </div>
-      <div class="modalidealtime">
+      <div class="modalIdealTime">
         <em>Ideal Time to Finish (in minutes): </em>
         <input type="number"></input>
       </div>
-      <div class="modaldeadLine">
+      <div class="modalDeadline">
         <em>Deadline: </em>
         <input type="date"></input>
       </div>
       <div class="btnContainer">
-        <button type="close" class="close btnStyle">Close</button>
-        <button class="markDone btnStyle">Mark as Done</button>
-        <button type="submit" class="saveChanges btnStyle">Save Changes</button>
+        <button type="close" class="close btn">Close</button>
+        <button class="markDone btn">Mark as Done</button>
+        <button type="submit" class="saveChanges btn">Save Changes</button>
       </div>
     </div>
 
@@ -66,8 +66,8 @@
           placeholder="Please Enter Time taken to finish task"
         />
         <div class="btnContainer">
-          <button class="cancelTime btnStyle">Cancel</button>
-          <button class="submitTime btnStyle" type="submit">Submit</button>
+          <button class="cancelTime btn">Cancel</button>
+          <button class="submitTime btn" type="submit">Submit</button>
         </div>
       </div>
     </div>
@@ -133,8 +133,8 @@
               <input name="description" id="description" type="text" />
             </div>
 
-            <button class="btn btnStyle" type="submit">Add Task</button>
-            <button class="reset btnStyle" type="reset">Reset</button>
+            <button class="submitTask btn" type="submit">Add Task</button>
+            <button class="reset btn" type="reset">Reset</button>
           </form>
         </aside>
 
@@ -160,7 +160,6 @@
           <hr />
           <section class="options">
             <span class="option" id="op1">Delete all</span>
-            <span class="option" id="op3">Let us Suggest</span>
             <span class="option" id="op4">Priority Sort: High to Low</span>
             <span class="option" id="op5">Priority Sort: Low to High</span>
             <span class="option" id="op6">deadLine Sort: Earliest first</span>

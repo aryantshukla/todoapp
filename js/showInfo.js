@@ -2,7 +2,6 @@ import { showModal } from './utils/showModal.js'
 import { removeTask } from './utils/timetaken.js'
 import { showAlert } from './utils/alert.js'
 
-
 const taskList = document.querySelector('.taskList')
 const modal = document.querySelector('.modal')
 const blurContainer = document.querySelector('.blurContainer')
@@ -31,9 +30,8 @@ taskList.addEventListener('click', (event) => {
     event.stopPropagation();
   }
   else if (eventTarget.classList.contains('markDone')) {
-    const divToDelete = event.target.parentElement.parentElement
     const _key = divToDelete.dataset.key;
-    removeTask(divToDelete, _key, event)
+    removeTask(_key, event)
   }
   else if (eventTarget.classList.contains('toDelete')) {
     const divToDelete = event.target.parentElement.parentElement
@@ -60,18 +58,18 @@ modal.addEventListener('click', (event) => {
     hidemodal();
     const _key = modal.dataset.key
     const divToDelete = document.querySelector(`.taskItem[data-key='${_key}']`)
-    removeTask(divToDelete, _key, event)
+    removeTask(_key, event)
   }
 
   if (event.target.classList.contains('saveChanges')) {
 
     try {
-      const newtaskName = modal.querySelector('.modaltaskName input').value
-      const newDesctiption = modal.querySelector('.modaldescription input').value
-      const newTimeRequired = modal.querySelector('.modalidealtime input').value
+      const newTaskName = modal.querySelector('.modalTaskName input').value
+      const newDesctiption = modal.querySelector('.modalDescription input').value
+      const newTimeRequired = modal.querySelector('.modalIdealTime input').value
       const newDeadLine = modal.querySelector('.modaldeadLine input').value
 
-      if (newtaskName.length === 0)
+      if (newTaskName.length === 0)
         throw new Error('task name is empty')
       if (newDesctiption.length === 0)
         throw new Error('task description is empty')
@@ -83,7 +81,7 @@ modal.addEventListener('click', (event) => {
       const _key = modal.dataset.key
       const newObj = JSON.parse(localStorage.getItem(_key))
 
-      newObj.taskName = newtaskName
+      newObj.taskName = newTaskName
       newObj.description = newDesctiption
       newObj.timeRequired = newTimeRequired
       newObj.deadLine = newDeadLine
