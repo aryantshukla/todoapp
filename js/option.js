@@ -55,7 +55,6 @@ options.addEventListener('click', (event) => {
     arr.sort(function (a, b) {
       if (a[0][0] !== b[0][0])
         return multiplierA * a[0][0] + multiplierB * b[0][0]
-      console.log('asdf', multiplierA, multiplierB)
       return b[0][1] - a[0][1]
     })
     for (let i = arr.length - 1; i >= 0; i--) {

@@ -16,7 +16,7 @@ const hidemodal = () => {
 taskList.addEventListener('click', (event) => {
 
   const eventTarget = event.target
-  console.log(eventTarget)
+
   if (eventTarget.classList.contains('taskItem')) {
     if (eventTarget.classList.contains('done')) {
       return

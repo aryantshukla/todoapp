@@ -28,10 +28,21 @@ body[data-theme="dark"] .commonModal {
   display: flex;
 }
 
-.modal p {
+.modal div {
   font-size: 1.5rem;
-  display: block;
+  margin-top: 2rem;
+  display: flex;
+  width: 90%;
+  justify-content: space-around;
 }
+
+.modal div em {
+  flex: 2;
+}
+.modal div input {
+  flex: 3;
+}
+
 .commonModal .btnContainer {
   margin-top: auto;
   margin-bottom: 2rem;
@@ -60,9 +71,9 @@ body[data-theme="dark"] .commonModal {
 }
 .timeForm input {
   height: 2rem;
+  font-size: 1rem;
 }
-.commonModal input {
+.modal input {
   height: 100%;
-  width: auto;
   font-size: 1rem;
 }
