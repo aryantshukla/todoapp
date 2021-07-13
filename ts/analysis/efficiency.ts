@@ -1,8 +1,8 @@
 export default class Efficiency {
 
-  private len
-  private efficiency
-  private kFactor
+  private len: number
+  private efficiency: number
+  private kFactor: number
 
   constructor() {
     this.len = 0;
@@ -39,7 +39,7 @@ export default class Efficiency {
     if (this.len === 0)
       return 0;
     this.calculatekFactor(this.len)
-    let Ea = 0;
+    let Ea: number = 0;
     Ea = 1 / (1 + 10 ** ((iTime / 60 - tTime / 60) / 20))
     if (tTime > iTime) {
       this.efficiency = this.efficiency + this.kFactor * (0 - Ea)
@@ -47,11 +47,10 @@ export default class Efficiency {
       this.efficiency = this.efficiency + this.kFactor * (1 - Ea)
     }
     this.efficiency = Math.max(this.efficiency, 0)
-    localStorage.setItem('efficiency', this.efficiency.toString());
-
   }
 
   updateEfficieny() {
+    localStorage.setItem('efficiency', this.efficiency.toString());
     (document.querySelector('.efficiency') as HTMLDivElement).textContent = this.efficiency.toString()
   }
 }

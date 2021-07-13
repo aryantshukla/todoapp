@@ -1,15 +1,16 @@
+import { Task } from './interfaces/interfaces.js'
 import { getNewTask, getNewDoneTask } from './utils/newtask.js'
 
 const notCompleted = document.querySelector('.notCompleted') as HTMLElement
 const completed = document.querySelector('.completed') as HTMLElement
 
 const keys = Object.keys(localStorage)
-let values = []
+let values: [number, Task][] = []
 
 for (let key of keys) {
-  const item = JSON.parse(localStorage.getItem(key) as string)
+  const item: Task = JSON.parse(localStorage.getItem(key) as string)
   if (item.done in [1, 0]) {
-    values.push([key, item])
+    values.push([Number(key), item])
   }
 }
 

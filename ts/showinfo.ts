@@ -1,6 +1,7 @@
 import { showModal } from './utils/showModal.js'
 import { removeTask } from './utils/timetaken.js'
 import { showAlert, isKeyUndefined } from './utils/alert.js'
+import { Task } from './interfaces/interfaces.js'
 
 
 const taskList = document.querySelector('.taskList') as HTMLElement
@@ -120,7 +121,7 @@ modal.addEventListener('click', (event) => {
         return
       }
 
-      const newObj = JSON.parse(localStorage.getItem(_key) as string)
+      const newObj: Task = JSON.parse(localStorage.getItem(_key) as string)
 
       newObj.taskName = newTaskName
       newObj.description = newDesctiption

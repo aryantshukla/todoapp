@@ -62,7 +62,7 @@ export function reset() {
   (document.getElementById("description") as HTMLInputElement).value = "";
 }
 
-export function getDelete(divToDelete: HTMLElement) {
+export function getDelete(divToDelete: HTMLDivElement) {
   if (divToDelete.firstElementChild)
     return `
       <p>${divToDelete.firstElementChild.textContent}</p>

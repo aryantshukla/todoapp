@@ -1,3 +1,4 @@
+import { Task } from "./interfaces/interfaces.js"
 import { showAlert } from "./utils/alert.js"
 import { getSec } from "./utils/timetaken.js"
 const options = document.querySelector('.options') as HTMLElement
@@ -12,7 +13,7 @@ function getPriorityNumber(element: HTMLElement) {
 }
 
 function getdate(element: string): number {
-  const obj = JSON.parse(localStorage.getItem(element) as string)
+  const obj: Task = JSON.parse(localStorage.getItem(element) as string)
   return getSec(obj.deadLine, true)
 }
 

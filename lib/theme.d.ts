@@ -1,2 +1,2 @@
-declare const themebtn: HTMLImageElement;
+declare const themeBtn: HTMLImageElement;
 declare const body: HTMLBodyElement;

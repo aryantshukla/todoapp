@@ -2,6 +2,7 @@ import { getDelete } from "./newtask.js"
 import { showAlert } from "./alert.js";
 import Efficiency from '../analysis/efficiency.js'
 import Power from '../analysis/power.js'
+import { Task } from "../interfaces/interfaces.js";
 
 
 let efficiencyAnalysis = new Efficiency();
@@ -54,17 +55,17 @@ function askForTime(_key: string) {
 }
 export function removeTask(_key: string, event: Event) {
   event.stopPropagation();
-  const divToDelete = document.querySelector(`.taskItem[data-key='${_key}']`) as HTMLElement
+  const divToDelete = document.querySelector(`.taskItem[data-key='${_key}']`) as HTMLDivElement
   askForTime(_key)
     .then((timeTaken: number) => {
       if (timeTaken > 0) {
-        const newDiv = document.createElement('div') as HTMLElement
+        const newDiv = document.createElement('div')
         if (newDiv === null)
           return
-        const divToDeleteData = JSON.parse(localStorage.getItem(_key) as string)
-        const iTime = divToDeleteData.timeRequired;
-        const fline = (new Date()).toLocaleDateString('en-GB')
-        const fLine = divToDeleteData.deadLine;
+        const divToDeleteData: Task = JSON.parse(localStorage.getItem(_key) as string)
+        const iTime: number = Number(divToDeleteData.timeRequired);
+        const fline: string = (new Date()).toLocaleDateString('en-GB')
+        const dLine: string = divToDeleteData.deadLine;
 
         divToDeleteData.done = 1;
 
@@ -76,7 +77,7 @@ export function removeTask(_key: string, event: Event) {
         taskCompleted.append(newDiv)
 
         efficiencyAnalysis.addNewFinishedItem(iTime, timeTaken)
-        powerAnalysis.addNewItem(iTime, timeTaken, fLine, fline)
+        powerAnalysis.addNewItem(iTime, timeTaken, dLine, fline)
 
         if (divToDelete.parentNode) {
           divToDelete.parentNode.removeChild(divToDelete)
