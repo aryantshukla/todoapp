@@ -1,6 +1,6 @@
 import { getNewTask, getNewDoneTask } from './utils/newtask.js'
 
-const notcompleted = document.querySelector('.notcompleted')
+const notCompleted = document.querySelector('.notCompleted')
 const completed = document.querySelector('.completed')
 
 const keys = Object.keys(localStorage)
@@ -15,7 +15,7 @@ for (let key of keys) {
     completed.append(getNewDoneTask(item))
   }
   else if (item.done === 0) {
-    notcompleted.append(getNewTask(item))
+    notCompleted.append(getNewTask(item))
   }
 
 }

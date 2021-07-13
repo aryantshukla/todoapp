@@ -9,29 +9,29 @@ function getPriority(priority) {
 function defaultContext() {
   return `<hr class="divisor">  
   <span>
-    <i class="material-icons todelete">	&#xe872; </i>
+    <i class="material-icons toDelete">	&#xe872; </i>
   </span>`
 }
 
 
-export function getNewTask({ taskname, priority, deadline, timeRequired, description, key }) {
+export function getNewTask({ taskName, priority, deadLine, timeRequired, description, key }) {
 
   const div = document.createElement('div')
   div.dataset.key = key;
 
-  div.classList.add('todo-item')
+  div.classList.add('taskItem')
   div.classList.add(getPriority(priority))
   const paragraph = document.createElement('p')
-  paragraph.textContent = taskname
+  paragraph.textContent = taskName
 
   const hr = document.createElement('hr')
   hr.classList.add('divisor')
 
   const span1 = document.createElement('span')
-  span1.textContent = `Deadline:${deadline}`
+  span1.textContent = `DeadLine:${deadLine}`
 
   const span2 = document.createElement('span')
-  span2.innerHTML = `<i class="material-icons info">info_outline</i>&nbsp;&nbsp;&nbsp;&nbsp;
+  span2.innerHTML = `<i class="material-icons info">info_outline</i>
                     <i class="material-icons markdone">&#xe876; </i>  `
 
   div.append(paragraph)
@@ -43,27 +43,27 @@ export function getNewTask({ taskname, priority, deadline, timeRequired, descrip
 
 }
 
-export function getNewDoneTask({ taskname, priority, deadline, timeRequired, description, key }) {
+export function getNewDoneTask({ taskName, key }) {
 
   const div = document.createElement('div')
   div.dataset.key = key;
-  div.classList.add('todo-item', 'done')
+  div.classList.add('taskItem', 'done')
 
   div.innerHTML = `
-    <p>${taskname}</p>
+    <p>${taskName}</p>
     <hr class="divisor">  
     <span>
-      <i class="material-icons todelete">	&#xe872; </i>
+      <i class="material-icons toDelete">	&#xe872; </i>
     </span>
   `
 
   return div;
 }
 
-export function refresh() {
-  document.querySelector('input[name=deadline]').value = ""
-  document.querySelector('input[name=taskname]').value = ""
-  document.querySelector('input[name=deadline]').value = ""
+export function reset() {
+  document.querySelector('input[name=deadLine]').value = ""
+  document.querySelector('input[name=taskName]').value = ""
+  document.querySelector('input[name=deadLine]').value = ""
   document.querySelector('input[name=timeRequired]').value = ""
   document.querySelector('input[name=description]').value = ""
 }
@@ -73,7 +73,7 @@ export function getDelete(divToDelete) {
     <p>${divToDelete.firstElementChild.textContent}</p>
       <hr class="divisor">  
       <span>
-        <i class="material-icons todelete">	&#xe872; </i>
+        <i class="material-icons toDelete">	&#xe872; </i>
       </span>
   `
 }

@@ -9,13 +9,13 @@ body[data-theme="light"] .analysis {
 }
 
 .analysis:hover {
-  box-shadow: 0px 0px 1.5em var(--neon);
+  box-shadow: 0px 0px 1.5em var(--mainColor);
 }
 .analysis:hover ~ section {
-  border-right: 0ch var(--neon) solid;
+  border-right: 0ch var(--mainColor) solid;
 }
 
-.spec-container {
+.specContainer {
   display: flex;
   flex-direction: column;
 }
@@ -44,5 +44,5 @@ body[data-theme="light"] .analysis {
 }
 .choice:hover {
   cursor: pointer;
-  text-shadow: 0px 0px 1em var(--btncolor);
+  text-shadow: 0px 0px 1em var(--btnColor);
 }

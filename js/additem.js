@@ -1,18 +1,18 @@
-import { getNewTask, refresh } from './utils/newtask.js'
+import { getNewTask, reset } from './utils/newtask.js'
 let alertNotified = 0;
 const btn = document.querySelector('.btn')
-const refreshbtn = document.querySelector('.refresh')
+const resetbtn = document.querySelector('.reset')
 
 btn.addEventListener('click', (event) => {
 
   event.preventDefault();
 
-  const taskname = document.querySelector('input[name=taskname]').value
-  const deadline = document.querySelector('input[name=deadline]').value
+  const taskName = document.querySelector('input[name=taskName]').value
+  const deadLine = document.querySelector('input[name=deadLine]').value
   const timeRequired = document.querySelector('input[name=timeRequired]').value
   const description = document.querySelector('input[name=description]').value
 
-  if (!taskname || !deadline || !timeRequired || !description) {
+  if (!taskName || !deadLine || !timeRequired || !description) {
     if (alertNotified)
       document.querySelector('.navbar').lastElementChild.remove();
 
@@ -20,10 +20,10 @@ btn.addEventListener('click', (event) => {
     const newAlert = document.createElement('p')
     newAlert.classList.add('errorForm')
     newAlert.textContent = 'Task not Prepared Completely, Not filled : '
-    if (!taskname)
-      newAlert.textContent += ' Taskname '
-    if (!deadline)
-      newAlert.textContent += ' Deadline '
+    if (!taskName)
+      newAlert.textContent += ' taskName '
+    if (!deadLine)
+      newAlert.textContent += ' deadLine '
     if (!timeRequired)
       newAlert.textContent += ' TTF '
     if (!description)
@@ -44,12 +44,12 @@ btn.addEventListener('click', (event) => {
   else if (medium.checked)
     priority = 'MEDIUM'
 
-  const todoContainer = document.querySelector('.todo-container')
-  const key = (new Date()).toString();
+  const taskContainer = document.querySelector('.taskContainer')
+  const key = (new Date()).valueOf();
   const newItem = {
-    taskname,
+    taskName,
     priority,
-    deadline,
+    deadLine,
     timeRequired,
     description,
     done: 0,
@@ -58,15 +58,15 @@ btn.addEventListener('click', (event) => {
 
   localStorage.setItem(newItem.key, JSON.stringify(newItem))
 
-  todoContainer.append(
+  taskContainer.append(
     getNewTask(newItem)
   )
 
-  refresh();
+  reset();
 
 })
 
-refreshbtn.addEventListener('click', (event) => {
+resetbtn.addEventListener('click', (event) => {
   event.preventDefault();
-  refresh();
+  reset();
 })

@@ -31,37 +31,38 @@
     <title>MISTIFY...</title>
   </head>
   <body data-theme="light">
-    <div class="header-container">
-      <header class="logo-container">
+    <div class="headerContainer">
+      <header class="logoContainer">
         <h1 class="logo">MISTIFY...</h1>
       </header>
-      <img src="./moon.png" class="theme_pic" alt="select theme" />
+      <img src="./moon.png" class="themePic" alt="select theme" />
     </div>
 
-    <br />
-    <div class="commonmodal modal showinfo modalhidden">
-      <p class="modaltaskname"><em>Task Name: </em></p>
+    <div class="commonModal modal showInfo modalHidden">
+      <p class="modaltaskName"><em>Task Name: </em></p>
       <p class="modaldescription"><em>Description: </em></p>
       <p class="modalidealtime"><em>Ideal Time to Finish (in minutes): </em></p>
-      <p class="modaldeadline"></p>
-      <div class="btncontainer">
-        <button type="close" class="close btnstyle">Close</button>
-        <button type="submit" class="savechang btnstyle">Save Changes</button>
+      <p class="modaldeadLine"></p>
+      <div class="btnContainer">
+        <button type="close" class="close btnStyle">Close</button>
+        <button type="submit" class="savechang btnStyle">Save Changes</button>
       </div>
     </div>
-    <div class="commonmodal askTime modalhidden">
-      <div class="timeform">
-        <label> Please Enter Time taken to finish task: </label>
-        <input
-          autofocus
-          type="number"
-          name="timetaken"
-          id="timetakne"
-          placeholder="Please Enter Time taken to finish task"
-        />
+    <div class="commonModal askTime modalHidden">
+      <div class="timeForm">
+        <label>
+          Please Enter Time taken to finish task:
+          <input
+            autofocus
+            type="number"
+            name="timetaken"
+            id="timetakne"
+            placeholder="Please Enter Time taken to finish task"
+          />
+        </label>
         <div>
-          <button class="cancelTime btnstyle">Cancel</button>
-          <button class="submitTime btnstyle">Submit</button>
+          <button class="cancelTime btnStyle">Cancel</button>
+          <button class="submitTime btnStyle" type="submit">Submit</button>
         </div>
       </div>
     </div>
@@ -70,14 +71,14 @@
       <aside class="navbar">
         <h2>Enter Your Task:</h2>
         <hr class="redbreaks" />
-        <form class="entertodo">
+        <form class="enterTask">
           <label>
             Task name:<br />
-            <input required name="taskname" type="text" />
+            <input required name="taskName" type="text" />
           </label>
           <label>
             Priority:<br />
-            <div class="selectpriority">
+            <div class="selectPriority">
               <label name="priority" class="p1">
                 <input
                   checked
@@ -104,8 +105,8 @@
             </div>
           </label>
           <label>
-            Select Deadline:<br />
-            <input required name="deadline" type="date" />
+            Select deadLine:<br />
+            <input required name="deadLine" type="date" />
           </label>
           <label>
             Ideal Time To Finish(in minutes):
@@ -116,15 +117,15 @@
             <input name="description" type="text" />
           </label>
 
-          <button class="btn btnstyle" type="submit">Add Task</button>
-          <button class="refresh btnstyle" type="submit">Refresh</button>
+          <button class="btn btnStyle" type="submit">Add Task</button>
+          <button class="reset btnStyle" type="reset">Reset</button>
         </form>
       </aside>
 
       <aside class="analysis">
         <h1>Analysis:</h1>
         <hr />
-        <section class="spec-container">
+        <section class="specContainer">
           <div class="spec">
             Efficiency Score:<br />
             <div class="rate">
@@ -143,22 +144,21 @@
         <hr />
         <section class="options">
           <span class="choice op1">Delete all</span>
-          <span class="choice op2">Redo Performace</span>
           <span class="choice op3">Let us Suggest</span>
           <span class="choice op4">Priority Sort: High to Low</span>
           <span class="choice op5">Priority Sort: Low to High</span>
-          <span class="choice op6">Deadline Sort: Earliest first</span>
-          <span class="choice op7">Deadline Sort: Last first</span>
+          <span class="choice op6">deadLine Sort: Earliest first</span>
+          <span class="choice op7">deadLine Sort: Last first</span>
         </section>
       </aside>
 
-      <section class="todo-list">
-        <h1 class="todo-heading">Your Tasks:</h1>
+      <section class="taskList">
+        <h1 class="task-heading">Your Tasks:</h1>
         <hr />
-        <section class="todo-container notcompleted"></section>
-        <h1 class="todo-heading">Completed Tasks:</h1>
+        <section class="taskContainer notCompleted"></section>
+        <h1 class="task-heading">Completed Tasks:</h1>
         <hr />
-        <section class="todo-container completed"></section>
+        <section class="taskContainer completed"></section>
       </section>
     </main>
   </body>

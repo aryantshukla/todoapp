@@ -1,4 +1,4 @@
-const themebtn = document.querySelector('.theme_pic')
+const themebtn = document.querySelector('.themePic')
 const body = document.querySelector('body')
 
 themebtn.addEventListener('click', (event) => {

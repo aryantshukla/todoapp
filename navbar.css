@@ -7,45 +7,45 @@ body[data-theme="light"] .navbar {
   padding-right: 2rem;
 }
 .navbar:hover {
-  box-shadow: 0px 0px 1.5em var(--neon);
+  box-shadow: 0px 0px 1.5em var(--mainColor);
 }
 .navbar:hover ~ section {
-  border-left: 0px var(--neon) solid;
+  border-left: 0px var(--mainColor) solid;
 }
-.entertodo {
+.enterTask {
   display: flex;
   flex-direction: column;
 }
-.selectpriority {
+.selectPriority {
   display: flex;
   flex-direction: column;
   padding-left: 2ch;
 }
-.selectpriority > label:hover {
-  text-shadow: 0px 0px 1em var(--neon);
+.selectPriority > label:hover {
+  text-shadow: 0px 0px 1em var(--mainColor);
 }
-.entertodo > label > input:not([type="radio"]) {
+.enterTask > label > input:not([type="radio"]) {
   width: 80%;
 }
-.entertodo > label {
+.enterTask > label {
   margin: 1ch;
 }
 label > input:not([type="radio"]):hover {
-  box-shadow: 0px 0px 5px var(--neon);
+  box-shadow: 0px 0px 5px var(--mainColor);
 }
 
-.btnstyle {
+.btnStyle {
   margin-top: 3em;
-  background-color: var(--btncolor);
-  color: var(--onneon);
+  background-color: var(--btnColor);
+  color: var(--onNeon);
   width: 10rem;
   height: 2rem;
   align-self: center;
   border-radius: 1em;
 }
 
-.btnstyle:hover {
-  box-shadow: 0px 0px 1em var(--neon);
+.btnStyle:hover {
+  box-shadow: 0px 0px 1em var(--mainColor);
 }
 .logo {
   margin: 0px;

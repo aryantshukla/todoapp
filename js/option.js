@@ -1,5 +1,4 @@
-import { getsec } from "./utils/timetaken.js"
-import { redoPerformance } from "./showInfo.js"
+import { getSec } from "./utils/timetaken.js"
 const options = document.querySelector('.options')
 
 function getPriorityNumber(element) {
@@ -13,7 +12,7 @@ function getPriorityNumber(element) {
 
 function getdate(element) {
   const obj = JSON.parse(localStorage.getItem(element))
-  return getsec(obj.deadline, true)
+  return getSec(obj.deadLine, true)
 }
 
 options.addEventListener('click', (event) => {
@@ -24,10 +23,10 @@ options.addEventListener('click', (event) => {
 
   if (eventTarget.classList.contains('op1')) {
 
-    const allitems = document.querySelectorAll('.todo-item')
+    const allItems = document.querySelectorAll('.taskItem')
 
-    for (let i = 0; i < allitems.length; i++) {
-      const _child = allitems[i]
+    for (let i = 0; i < allItems.length; i++) {
+      const _child = allItems[i]
       _child.parentNode.removeChild(_child)
     }
     for (let key of Object.keys(localStorage)) {
@@ -35,11 +34,8 @@ options.addEventListener('click', (event) => {
     }
 
   }
-  if (eventTarget.classList.contains('op2')) {
-    //redoPerformance();
-  }
   if (eventTarget.classList.contains('op4') || eventTarget.classList.contains('op5')) {
-    const container = document.querySelector('.todo-container');
+    const container = document.querySelector('.taskContainer');
     const divs = container.children
 
     const optionForSorting = eventTarget.classList.contains('op4')
@@ -49,7 +45,6 @@ options.addEventListener('click', (event) => {
       multiplierA = -1;
       multiplierB = 1;
     }
-
 
     const arr = []
     for (let i = 0; i < divs.length; i++) {
@@ -68,7 +63,7 @@ options.addEventListener('click', (event) => {
   }
 
   if (eventTarget.classList.contains('op6') || eventTarget.classList.contains('op7')) {
-    const container = document.querySelector('.notcompleted');
+    const container = document.querySelector('.notCompleted');
     const divs = container.children
 
     const optionForSorting = eventTarget.classList.contains('op6')

@@ -3,15 +3,15 @@ export default class Efficiency {
   constructor() {
     this.len = 0;
     this.efficiency = 0;
-    this.Kfactor = 0;
+    this.kFactor = 0;
     if (localStorage.len) {
       this.len = Number(localStorage.getItem('len'))
     }
     if (localStorage.efficiency) {
       this.efficiency = Number(localStorage.getItem('efficiency'))
     }
-    if (localStorage.Kfactor) {
-      this.Kfactor = Number(localStorage.getItem('Kfactor'))
+    if (localStorage.kFactor) {
+      this.kFactor = Number(localStorage.getItem('kFactor'))
     }
     this.updateEfficieny();
   }
@@ -23,10 +23,10 @@ export default class Efficiency {
     localStorage.setItem('len', this.len);
   }
 
-  calculateKfactor(len) {
-    this.Kfactor = 10 * (10 - Math.floor(len / 10))
-    this.Kfactor = Math.max(this.Kfactor, 10)
-    localStorage.setItem('Kfactor', this.Kfactor)
+  calculatekFactor(len) {
+    this.kFactor = 10 * (10 - Math.floor(len / 10))
+    this.kFactor = Math.max(this.kFactor, 10)
+    localStorage.setItem('kFactor', this.kFactor)
   }
 
   calculateEfficiency(iTime, tTime) {
@@ -34,13 +34,13 @@ export default class Efficiency {
     tTime = Number(tTime)
     if (this.len === 0)
       return 0;
-    this.calculateKfactor(this.len)
+    this.calculatekFactor(this.len)
     let Ea = 0;
     Ea = 1 / (1 + 10 ** ((iTime / 60 - tTime / 60) / 20))
     if (tTime > iTime) {
-      this.efficiency = this.efficiency + this.Kfactor * (0 - Ea)
+      this.efficiency = this.efficiency + this.kFactor * (0 - Ea)
     } else {
-      this.efficiency = this.efficiency + this.Kfactor * (1 - Ea)
+      this.efficiency = this.efficiency + this.kFactor * (1 - Ea)
     }
     this.efficiency = Math.max(this.efficiency, 0)
     localStorage.setItem('efficiency', this.efficiency);

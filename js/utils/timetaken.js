@@ -3,21 +3,21 @@ const modal = document.querySelector('.askTime')
 export function askForTime(key) {
   return new Promise((resolve) => {
 
-    modal.classList.toggle('modalhidden')
-    modal.classList.toggle('modalshow')
+    modal.classList.toggle('modalHidden')
+    modal.classList.toggle('modalShow')
 
     function handleClick(event) {
       const cancelbtn = modal.querySelector('.cancelTime')
       const submitbtn = modal.querySelector('.submitTime')
       if (event.target === cancelbtn) {
-        modal.classList.toggle('modalhidden')
-        modal.classList.toggle('modalshow')
+        modal.classList.toggle('modalHidden')
+        modal.classList.toggle('modalShow')
         modal.removeEventListener('click', handleClick)
         resolve(-1);
       }
       if (event.target === submitbtn) {
-        modal.classList.toggle('modalhidden')
-        modal.classList.toggle('modalshow')
+        modal.classList.toggle('modalHidden')
+        modal.classList.toggle('modalShow')
         modal.removeEventListener('click', handleClick)
         let val = modal.querySelector('input').value
         if (!val)
@@ -32,8 +32,8 @@ export function askForTime(key) {
 }
 
 
-export function getsec(dline, us_encode = 0) {
+export function getSec(fLine, us_encode = 0) {
   if (us_encode)
-    return dline.slice(0, 4) * 30000 + dline.slice(5, 7) * 300 + dline.slice(9)
-  return dline.slice(6) * 30000 + dline.slice(3, 5) * 300 + dline.slice(0, 2)
+    return fLine.slice(0, 4) * 30000 + fLine.slice(5, 7) * 300 + fLine.slice(9)
+  return fLine.slice(6) * 30000 + fLine.slice(3, 5) * 300 + fLine.slice(0, 2)
 }

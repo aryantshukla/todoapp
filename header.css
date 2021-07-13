@@ -1,16 +1,17 @@
 .logo {
   font-size: 5ch;
   overflow: hidden;
-  border-right: 5px var(--neon) solid;
+  border-right: 5px var(--mainColor) solid;
   letter-spacing: 1ch;
-  text-shadow: 0px 0px 1ch var(--btncolor);
+  text-shadow: 0px 0px 1ch var(--btnColor);
   animation: bringtext 5s steps(10, end), cursorblink 0.75s step-end infinite;
 }
-.header-container {
+.headerContainer {
   position: sticky;
   z-index: 1;
+  margin-bottom: 1rem;
 }
-.logo-container {
+.logoContainer {
   display: inline-block;
 }
 @keyframes bringtext {
@@ -27,40 +28,17 @@
     border-color: transparent;
   }
   50% {
-    border-color: var(--neon);
-  }
-}
-.horizontal-break {
-  height: 0.1ch;
-  width: 100%;
-  background-color: var(--colorhr);
-  display: flex;
-}
-
-.shadow-break {
-  width: 10%;
-  background-color: var(--neon);
-  box-shadow: 0px 0px 2ch var(--neon);
-  animation: marginal 5s linear infinite;
-}
-
-@keyframes marginal {
-  from,
-  to {
-    transform: translateX(0px);
-  }
-  50% {
-    transform: translateX(900%);
+    border-color: var(--mainColor);
   }
 }
 
-.header-container img {
+.headerContainer img {
   height: inherit;
   width: 5vw;
   cursor: pointer;
   margin-left: auto;
   display: inline;
 }
-.header-container {
+.headerContainer {
   display: flex;
 }

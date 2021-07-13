@@ -1,18 +1,18 @@
-export function showModal({ taskname, description, deadline, timeRequired, key }) {
+export function showModal({ taskName, description, deadLine, timeRequired, key }) {
 
   const modal = document.querySelector('.modal')
-  modal.querySelector('.modaltaskname').append(getSpanofInfo(taskname))
-  modal.querySelector('.modaldescription').append(getSpanofInfo(description))
-  modal.querySelector('.modalidealtime').append(getSpanofInfo(timeRequired))
-  modal.querySelector('.modaldeadline').textContent = deadline
+  modal.querySelector('.modaltaskName').append(addSpanOfInfo(taskName))
+  modal.querySelector('.modaldescription').append(addSpanOfInfo(description))
+  modal.querySelector('.modalidealtime').append(addSpanOfInfo(timeRequired))
+  modal.querySelector('.modaldeadLine').textContent = deadLine
   modal.dataset.key = key
 
-  modal.classList.toggle('modalhidden')
-  modal.classList.toggle('modalshow')
+  modal.classList.toggle('modalHidden')
+  modal.classList.toggle('modalShow')
 
 }
 
-function getSpanofInfo(value) {
+function addSpanOfInfo(value) {
   const span = document.createElement('span')
   span.contentEditable = true;
   span.textContent = value;

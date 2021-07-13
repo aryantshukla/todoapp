@@ -1,7 +1,7 @@
-.commonmodal {
+.commonModal {
   z-index: 1;
   position: absolute;
-  color: var(--neon);
+  color: var(--mainColor);
   overflow-y: scroll;
   backdrop-filter: blur(1rem);
   border-radius: 2rem;
@@ -10,22 +10,22 @@
   border: 2px #1b2735 solid;
 }
 
-body[data-theme="light"] .commonmodal {
+body[data-theme="light"] .commonModal {
   background-color: rgba(255, 255, 255, 0.4);
 }
-body[data-theme="dark"] .commonmodal {
+body[data-theme="dark"] .commonModal {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-.showinfo {
+.showInfo {
   margin-left: 25vw;
   height: 50vh;
   width: 50vw;
 }
-.modalhidden {
+.modalHidden {
   display: none;
 }
-.modalshow {
+.modalShow {
   display: flex;
 }
 
@@ -33,7 +33,7 @@ body[data-theme="dark"] .commonmodal {
   font-size: 1.5rem;
   display: block;
 }
-.modal .btncontainer {
+.modal .btnContainer {
   margin-top: auto;
   margin-bottom: 2rem;
 }
@@ -46,15 +46,15 @@ body[data-theme="dark"] .commonmodal {
   justify-content: center;
 }
 
-.timeform {
-  color: var(--neon);
+.timeForm {
+  color: var(--mainColor);
   display: flex;
   flex-direction: column;
   padding: 5rem;
 }
-.timeform * {
+.timeForm * {
   margin: 1rem;
 }
-.timeform input {
+.timeForm input {
   height: 2rem;
 }

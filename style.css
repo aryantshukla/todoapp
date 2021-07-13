@@ -1,30 +1,30 @@
 body[data-theme="dark"] {
-  --neon: #39ff14;
+  --mainColor: #39ff14;
   --p1: orange;
   --p2: yellow;
   --p3: white;
   --dead: white;
-  --onneon: black;
+  --onNeon: black;
   --colorhr: red;
-  --btncolor: #39ff14;
+  --btnColor: #39ff14;
 
   background: black;
 }
 body[data-theme="light"] {
-  --neon: black;
+  --mainColor: black;
   --p1: #c02f1d;
   --p3: #0e5469;
   --p2: blue;
   --dead: #565151;
-  --onneon: white;
+  --onNeon: white;
   --colorhr: #01172f;
-  --btncolor: #216b82;
+  --btnColor: #216b82;
 
   background: white;
 }
 body {
   position: relative;
-  color: var(--neon);
+  color: var(--mainColor);
   font-family: mukta;
   height: 100vh;
 }
@@ -42,7 +42,7 @@ main > * {
 hr {
   border: 1px var(--colorhr) solid;
 }
-.errormsg {
+.errMsg {
   position: absolute;
   bottom: 1rem;
   width: 80%;
