@@ -1,60 +1,79 @@
-.commonmodal {
+.commonModal {
   z-index: 1;
   position: absolute;
-  color: var(--neon);
+  color: var(--mainColor);
   overflow-y: scroll;
-  backdrop-filter: blur(1rem);
   border-radius: 2rem;
   flex-direction: column;
   align-items: center;
   border: 2px #1b2735 solid;
-}
-
-body[data-theme="light"] .commonmodal {
-  background-color: rgba(255, 255, 255, 0.4);
-}
-body[data-theme="dark"] .commonmodal {
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
-.showinfo {
+  margin-top: 10vh;
   margin-left: 25vw;
   height: 50vh;
   width: 50vw;
+  margin-top: 20vh;
 }
-.modalhidden {
+
+body[data-theme="light"] .commonModal {
+  background-color: rgba(255, 255, 255, 1);
+}
+body[data-theme="dark"] .commonModal {
+  background-color: rgba(0, 0, 0, 1);
+}
+
+.modalHidden {
   display: none;
 }
-.modalshow {
+.modalShow {
   display: flex;
 }
 
-.modal p {
+.showInfo div {
   font-size: 1.5rem;
-  display: block;
+  margin-top: 2rem;
+  display: flex;
+  width: 90%;
+  justify-content: space-around;
 }
-.modal .btncontainer {
+
+.showInfo div em {
+  flex: 2;
+}
+.showInfo div input {
+  flex: 3;
+}
+
+.commonModal .btnContainer {
   margin-top: auto;
   margin-bottom: 2rem;
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
 }
-.modal em {
+.showInfo em {
   color: var(--dead);
 }
 .askTime {
-  height: 80vh;
-  width: 97vw;
+  height: 50vh;
+  width: 50vw;
+  margin-left: 25vw;
   justify-content: center;
 }
 
-.timeform {
-  color: var(--neon);
+.timeForm {
+  color: var(--mainColor);
   display: flex;
   flex-direction: column;
   padding: 5rem;
 }
-.timeform * {
+.timeForm * {
   margin: 1rem;
 }
-.timeform input {
+.timeForm input {
   height: 2rem;
+  font-size: 1rem;
+}
+.showInfo input {
+  height: 100%;
+  font-size: 1rem;
 }

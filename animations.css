@@ -1,7 +1,7 @@
 .fullpagelodar {
   width: 100px;
-  background-color: var(--neon);
-  box-shadow: 0px 0px 2px var(--neon);
+  background-color: var(--mainColor);
+  box-shadow: 0px 0px 2px var(--mainColor);
   height: 2px;
   display: absolute;
   z-index: -1;

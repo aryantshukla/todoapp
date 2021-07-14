@@ -22,144 +22,162 @@
     <link rel="stylesheet" href="animations.css" />
     <link rel="stylesheet" href="aside.css" />
     <link rel="stylesheet" href="modal.css" />
-    <script type="module" src="js/additem.js" defer></script>
-    <script type="module" src="js/showInfo.js" defer></script>
-    <script type="module" src="js/option.js"></script>
-    <script type="module" src="js/theme.js"></script>
-    <script type="module" src="js/initial.js"></script>
+    <script type="module" src="lib/additem.js" defer></script>
+    <script type="module" src="lib/showInfo.js" defer></script>
+    <script type="module" src="lib/option.js"></script>
+    <script type="module" src="lib/theme.js"></script>
+    <script type="module" src="lib/initial.js"></script>
+    <script type="module" src="lib/database.js"></script>
 
     <title>MISTIFY...</title>
   </head>
   <body data-theme="light">
-    <div class="header-container">
-      <header class="logo-container">
-        <h1 class="logo">MISTIFY...</h1>
-      </header>
-      <img src="./moon.png" class="theme_pic" alt="select theme" />
-    </div>
-
-    <br />
-    <div class="commonmodal modal showinfo modalhidden">
-      <p class="modaltaskname"><em>Task Name: </em></p>
-      <p class="modaldescription"><em>Description: </em></p>
-      <p class="modalidealtime"><em>Ideal Time to Finish (in minutes): </em></p>
-      <p class="modaldeadline"></p>
-      <div class="btncontainer">
-        <button type="close" class="close btnstyle">Close</button>
-        <button type="submit" class="savechang btnstyle">Save Changes</button>
+    <div class="commonModal showInfo modalHidden">
+      <div class="modalTaskName">
+        <em>Task Name: </em>
+        <input></input>
+      </div>
+      <div class="modalDescription">
+        <em>Description: </em>
+        <input></input>
+      </div>
+      <div class="modalIdealTime">
+        <em>Ideal Time to Finish (in minutes): </em>
+        <input type="number"></input>
+      </div>
+      <div class="modalDeadline">
+        <em>Deadline: </em>
+        <input type="date"></input>
+      </div>
+      <div class="btnContainer">
+        <button type="close" class="btn" data-id="close">Close</button>
+        <button class="btn" data-id="modalMarkDone">Mark as Done</button>
+        <button type="submit" class="btn" data-id="saveChanges">Save Changes</button>
       </div>
     </div>
-    <div class="commonmodal askTime modalhidden">
-      <div class="timeform">
+
+    <div class="commonModal askTime modalHidden">
+      <div class="timeForm formElement">
         <label> Please Enter Time taken to finish task: </label>
         <input
           autofocus
           type="number"
           name="timetaken"
           id="timetakne"
-          placeholder="Please Enter Time taken to finish task"
+          placeholder="Time taken to finish"
         />
-        <div>
-          <button class="cancelTime btnstyle">Cancel</button>
-          <button class="submitTime btnstyle">Submit</button>
-        </div>
       </div>
+        <div class="btnContainer">
+          <button class="btn" data-id="cancelTime">Cancel</button>
+          <button class="btn" type="submit" data-id="submitTime">Submit</button>
+        </div>
+     
     </div>
 
-    <main>
-      <aside class="navbar">
-        <h2>Enter Your Task:</h2>
-        <hr class="redbreaks" />
-        <form class="entertodo">
-          <label>
-            Task name:<br />
-            <input required name="taskname" type="text" />
-          </label>
-          <label>
-            Priority:<br />
-            <div class="selectpriority">
-              <label name="priority" class="p1">
-                <input
-                  checked
-                  id="high"
-                  type="radio"
-                  value="HIGH"
-                  name="priority"
-                />
-                HIGH
-              </label>
-              <label name="priority" class="p2">
-                <input
-                  id="medium"
-                  type="radio"
-                  value="MEDIUM"
-                  name="priority"
-                />
-                MEDIUM
-              </label>
-              <label name="priority" class="p3">
-                <input id="low" type="radio" value="LOW" name="priority" />
-                LOW
-              </label>
+    <main class="blurContainer">
+      <div class="headerContainer">
+        <header class="logoContainer">
+          <h1 class="logo">MISTIFY...</h1>
+        </header>
+        <img src="./moon.png" class="themePic" alt="select theme" />
+      </div>
+      <main class="application">
+        <aside class="navbar">
+          <h2>Enter Your Task:</h2>
+          <hr class="redbreaks" />
+          <form class="enterTask">
+            <div class="formElement">
+              <label for="taskName"> Task name: </label>
+              <input required name="taskName" id="taskName" type="text" />
             </div>
-          </label>
-          <label>
-            Select Deadline:<br />
-            <input required name="deadline" type="date" />
-          </label>
-          <label>
-            Ideal Time To Finish(in minutes):
-            <input name="timeRequired" type="number" />
-          </label>
-          <label>
-            Task Description:<br />
-            <input name="description" type="text" />
-          </label>
+            <div class="formElement">
+              Priority:
+              <div class="selectPriority">
+                <label for="high" class="p1">
+                  <input
+                    checked
+                    id="high"
+                    type="radio"
+                    value="HIGH"
+                    name="priority"
+                  />
+                  HIGH
+                </label>
+                <label for="medium" class="p2">
+                  <input
+                    id="medium"
+                    type="radio"
+                    value="MEDIUM"
+                    name="priority"
+                  />
+                  MEDIUM
+                </label>
+                <label for="low" class="p3">
+                  <input id="low" type="radio" value="LOW" name="priority" />
+                  LOW
+                </label>
+              </div>
+            </div>
 
-          <button class="btn btnstyle" type="submit">Add Task</button>
-          <button class="refresh btnstyle" type="submit">Refresh</button>
-        </form>
-      </aside>
+            <div class="formElement">
+              <label for="deadLine"> Select deadLine: </label>
+              <input required name="deadLine" id="deadLine" type="date" />
+            </div>
+            <div class="formElement">
+              <label for="timeRequired  ">
+                Ideal Time To Finish(in minutes):
+              </label>
+              <input name="timeRequired" id="timeRequired" type="number" />
+            </div>
 
-      <aside class="analysis">
-        <h1>Analysis:</h1>
-        <hr />
-        <section class="spec-container">
-          <div class="spec">
-            Efficiency Score:<br />
-            <div class="rate">
-              <div class="efficiency">0</div>
+            <div class="formElement">
+              <label for="description"> Task Description: </label>
+              <input name="description" id="description" type="text" />
             </div>
-          </div>
-          <div class="spec">
-            Power:<br />
-            <div class="rate">
-              <div class="power">1050</div>
+
+            <button class="btn" type="submit" data-id="submitTask">Add Task</button>
+            <button class="btn" type="reset" data-id="reset">Reset</button>
+          </form>
+        </aside>
+
+        <aside class="analysis">
+          <h1>Analysis:</h1>
+          <hr />
+          <section class="specContainer">
+            <div class="spec">
+              Efficiency Score:
+              <div class="rate">
+                <div class="efficiency">0</div>
+              </div>
             </div>
-          </div>
+            <div class="spec">
+              Power:
+              <div class="rate">
+                <div class="power">1050</div>
+              </div>
+            </div>
+          </section>
+
+          <h1>Options</h1>
+          <hr />
+          <section class="options">
+            <span class="option" id="op1">Delete all</span>
+            <span class="option" id="op4">Priority Sort: High to Low</span>
+            <span class="option" id="op5">Priority Sort: Low to High</span>
+            <span class="option" id="op6">deadLine Sort: Earliest first</span>
+            <span class="option" id="op7">deadLine Sort: Last first</span>
+          </section>
+        </aside>
+
+        <section class="taskList">
+          <h1 >Your Tasks:</h1>
+          <hr />
+          <section class="taskContainer" data-id="notCompleted"></section>
+          <h1>Completed Tasks:</h1>
+          <hr />
+          <section class="taskContainer" data-id="completed"></section>
         </section>
-
-        <h1>Options</h1>
-        <hr />
-        <section class="options">
-          <span class="choice op1">Delete all</span>
-          <span class="choice op2">Redo Performace</span>
-          <span class="choice op3">Let us Suggest</span>
-          <span class="choice op4">Priority Sort: High to Low</span>
-          <span class="choice op5">Priority Sort: Low to High</span>
-          <span class="choice op6">Deadline Sort: Earliest first</span>
-          <span class="choice op7">Deadline Sort: Last first</span>
-        </section>
-      </aside>
-
-      <section class="todo-list">
-        <h1 class="todo-heading">Your Tasks:</h1>
-        <hr />
-        <section class="todo-container notcompleted"></section>
-        <h1 class="todo-heading">Completed Tasks:</h1>
-        <hr />
-        <section class="todo-container completed"></section>
-      </section>
+      </main>
     </main>
   </body>
 </html>

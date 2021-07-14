@@ -1,48 +1,48 @@
 body[data-theme="dark"] {
-  --neon: #39ff14;
+  --mainColor: #39ff14;
   --p1: orange;
   --p2: yellow;
   --p3: white;
   --dead: white;
-  --onneon: black;
-  --colorhr: red;
-  --btncolor: #39ff14;
+  --onNeon: black;
+  --colorHR: red;
+  --btnColor: #39ff14;
 
   background: black;
 }
 body[data-theme="light"] {
-  --neon: black;
+  --mainColor: black;
   --p1: #c02f1d;
   --p3: #0e5469;
   --p2: blue;
   --dead: #565151;
-  --onneon: white;
-  --colorhr: #01172f;
-  --btncolor: #216b82;
+  --onNeon: white;
+  --colorHR: #01172f;
+  --btnColor: #216b82;
 
   background: white;
 }
 body {
   position: relative;
-  color: var(--neon);
+  color: var(--mainColor);
   font-family: mukta;
   height: 100vh;
 }
 
-main {
+.application {
   height: 80vh;
   display: grid;
   grid-template-columns: 20% auto 20%;
 }
 
-main > * {
+.application > * {
   height: 80vh;
   overflow-y: scroll;
 }
 hr {
-  border: 1px var(--colorhr) solid;
+  border: 1px var(--colorHR) solid;
 }
-.errormsg {
+.errMsg {
   position: absolute;
   bottom: 1rem;
   width: 80%;
@@ -56,4 +56,7 @@ hr {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.blur {
+  filter: blur(1em);
 }
