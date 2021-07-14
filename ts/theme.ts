@@ -1,5 +1,5 @@
-const themeBtn = document.querySelector('.themePic') as HTMLImageElement
-const body = document.querySelector('body') as HTMLBodyElement
+const themeBtn = document.getElementsByClassName('themePic')[0] as HTMLImageElement
+const body = document.getElementsByTagName('body')[0] as HTMLBodyElement
 
 themeBtn.addEventListener('click', () => {
 

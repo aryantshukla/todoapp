@@ -1,8 +1,10 @@
 import { getNewTask, reset } from './utils/newtask.js'
 import { Task } from './interfaces/interfaces'
+import Database from './database.js'
+
 let alertNotified = 0;
-const btn = document.querySelector('.submitTask') as HTMLButtonElement
-const resetbtn = document.querySelector('.reset') as HTMLButtonElement
+const btn = document.querySelector('[data-id="submitTask"]') as HTMLButtonElement
+const resetbtn = document.querySelector('[data-id="reset"]') as HTMLButtonElement
 
 
 btn.addEventListener('click', (event) => {
@@ -12,7 +14,7 @@ btn.addEventListener('click', (event) => {
   const deadLine = (document.getElementById('deadLine') as HTMLInputElement).value
   const timeRequired = (document.getElementById('timeRequired') as HTMLInputElement).value
   const description = (document.getElementById('description') as HTMLInputElement).value
-  const navbar = document.querySelector('.navbar') as HTMLElement
+  const navbar = document.getElementsByClassName('navbar')[0] as HTMLElement
   const high = document.getElementById('high') as HTMLInputElement
   const medium = document.getElementById('medium') as HTMLInputElement
 
@@ -50,8 +52,9 @@ btn.addEventListener('click', (event) => {
   else if (medium.checked)
     priority = 'MEDIUM'
 
-  const taskContainer = document.querySelector('.taskContainer') as HTMLElement
+  const taskContainer = document.getElementsByClassName('taskContainer')[0]
   const key = ((new Date()).valueOf()).toString();
+
   const newItem: Task = {
     taskName,
     priority,
@@ -62,7 +65,7 @@ btn.addEventListener('click', (event) => {
     key,
   }
 
-  localStorage.setItem(newItem.key, JSON.stringify(newItem))
+  Database.setItem(newItem)
 
   taskContainer.append(
     getNewTask(newItem)

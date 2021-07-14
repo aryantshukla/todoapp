@@ -1,12 +1,14 @@
 import { showModal } from './utils/showModal.js'
 import { removeTask } from './utils/timetaken.js'
 import { showAlert, isKeyUndefined } from './utils/alert.js'
+import Database from './database.js'
 import { Task } from './interfaces/interfaces.js'
 
 
-const taskList = document.querySelector('.taskList') as HTMLElement
-const modal = document.querySelector('.showInfo') as HTMLElement
-const blurContainer = document.querySelector('.blurContainer') as HTMLElement
+
+const taskList = document.getElementsByClassName('taskList')[0]
+const modal = document.getElementsByClassName('showInfo')[0] as HTMLDivElement
+const blurContainer = document.getElementsByClassName('blurContainer')[0]
 
 const hidemodal = () => {
   modal.classList.add('modalHidden')
@@ -28,7 +30,8 @@ taskList.addEventListener('click', (event) => {
       return
     }
 
-    showModal(JSON.parse(localStorage.getItem(_key) as string))
+    const taskForModal = Database.getItem(_key)
+    showModal(taskForModal)
     event.stopPropagation();
   }
   if (eventTarget.classList.contains('info')) {
@@ -43,7 +46,8 @@ taskList.addEventListener('click', (event) => {
       showAlert('key not found,Error')
       return
     }
-    showModal(JSON.parse(localStorage.getItem(_key) as string))
+    const taskForModal = Database.getItem(_key)
+    showModal(taskForModal)
     event.stopPropagation();
   }
   else if (eventTarget.classList.contains('markDone')) {
@@ -66,7 +70,7 @@ taskList.addEventListener('click', (event) => {
     }
     const divToDelete = eventTarget.parentElement.parentElement
     const _key = divToDelete.dataset.key
-    console.log(divToDelete)
+
     if (divToDelete.parentNode === null) {
       showAlert('couldnt find parent of div to delete')
       return
@@ -76,7 +80,8 @@ taskList.addEventListener('click', (event) => {
       return
     }
     divToDelete.parentNode.removeChild(divToDelete)
-    localStorage.removeItem(_key)
+    Database.deleteKey(_key)
+
   }
 
 })
@@ -121,7 +126,7 @@ modal.addEventListener('click', (event) => {
         return
       }
 
-      const newObj: Task = JSON.parse(localStorage.getItem(_key) as string)
+      const newObj: Task = Database.getItem(_key)
 
       newObj.taskName = newTaskName
       newObj.description = newDesctiption
@@ -129,9 +134,9 @@ modal.addEventListener('click', (event) => {
       newObj.deadLine = newDeadLine
 
       const taskItemConsidered = document.querySelector(`.taskItem[data-key='${_key}']`) as HTMLElement
-      (taskItemConsidered.querySelector('p') as HTMLParagraphElement).textContent = newObj.taskName
+      (taskItemConsidered.getElementsByTagName('p')[0] as HTMLParagraphElement).textContent = newObj.taskName
 
-      localStorage.setItem(_key, JSON.stringify(newObj))
+      Database.setItem(newObj)
 
     }
     catch (err) {

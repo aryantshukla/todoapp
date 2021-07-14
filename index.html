@@ -27,6 +27,7 @@
     <script type="module" src="lib/option.js"></script>
     <script type="module" src="lib/theme.js"></script>
     <script type="module" src="lib/initial.js"></script>
+    <script type="module" src="lib/database.js"></script>
 
     <title>MISTIFY...</title>
   </head>
@@ -67,8 +68,8 @@
         />
       </div>
         <div class="btnContainer">
-          <button class="cancelTime btn">Cancel</button>
-          <button class="submitTime btn" type="submit">Submit</button>
+          <button class="btn" data-id="cancelTime">Cancel</button>
+          <button class="btn" type="submit" data-id="submitTime">Submit</button>
         </div>
      
     </div>
@@ -134,8 +135,8 @@
               <input name="description" id="description" type="text" />
             </div>
 
-            <button class="submitTask btn" type="submit">Add Task</button>
-            <button class="reset btn" type="reset">Reset</button>
+            <button class="btn" type="submit" data-id="submitTask">Add Task</button>
+            <button class="btn" type="reset" data-id="reset">Reset</button>
           </form>
         </aside>
 
@@ -169,12 +170,12 @@
         </aside>
 
         <section class="taskList">
-          <h1 class="task-heading">Your Tasks:</h1>
+          <h1 >Your Tasks:</h1>
           <hr />
-          <section class="taskContainer notCompleted"></section>
-          <h1 class="task-heading">Completed Tasks:</h1>
+          <section class="taskContainer" data-id="notCompleted"></section>
+          <h1>Completed Tasks:</h1>
           <hr />
-          <section class="taskContainer completed"></section>
+          <section class="taskContainer" data-id="completed"></section>
         </section>
       </main>
     </main>

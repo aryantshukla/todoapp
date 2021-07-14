@@ -1,7 +1,8 @@
 import { Task } from "./interfaces/interfaces.js"
 import { showAlert } from "./utils/alert.js"
 import { getSec } from "./utils/timetaken.js"
-const options = document.querySelector('.options') as HTMLElement
+import Database from "./database.js"
+const options = document.getElementsByClassName('options')[0] as HTMLElement
 
 function getPriorityNumber(element: HTMLElement) {
   if (element.classList.contains('p1'))
@@ -13,7 +14,7 @@ function getPriorityNumber(element: HTMLElement) {
 }
 
 function getdate(element: string): number {
-  const obj: Task = JSON.parse(localStorage.getItem(element) as string)
+  const obj: Task = Database.getItem(element)
   return getSec(obj.deadLine, true)
 }
 
@@ -32,13 +33,12 @@ options.addEventListener('click', (event) => {
         continue
       _child.parentNode.removeChild(_child)
     }
-    for (let key of Object.keys(localStorage)) {
-      localStorage.removeItem(key)
-    }
+    Database.clearAll();
+
 
   }
   if (eventTarget.id === 'op4' || eventTarget.id === 'op5') {
-    const container = document.querySelector('.taskContainer') as HTMLElement
+    const container = document.getElementsByClassName('taskContainer')[0] as HTMLElement
     const divs = container.children
 
     const optionForSorting = (eventTarget.id !== 'op4')
@@ -70,10 +70,10 @@ options.addEventListener('click', (event) => {
   }
 
   if (eventTarget.id === 'op6' || eventTarget.id === 'op7') {
-    const container = document.querySelector('.notCompleted') as HTMLElement
+    const container = document.querySelector('[data-id="notCompleted"') as HTMLElement
     const divs = container.children
 
-    const optionForSorting = eventTarget.classList.contains('op6')
+    const optionForSorting = (eventTarget.id !== 'op6')
 
     let multiplierA = 1, multiplierB = -1;
     if (optionForSorting) {

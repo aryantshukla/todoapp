@@ -3,12 +3,12 @@ import { showAlert } from "./alert.js"
 export function showModal(obj: Task) {
 
   const { taskName, description, deadLine, timeRequired, key } = obj;
-  const modal = document.querySelector('.showInfo') as HTMLDivElement
-  if (modal === null) {
-    showAlert('error is displaying modal')
+  const modal = document.getElementsByClassName('showInfo')[0] as HTMLDivElement
+  const blurContainer = document.querySelector('.blurContainer')
+  if (blurContainer === null) {
+    showAlert('Error, Cant blur background')
     return
   }
-  const blurContainer = document.querySelector('.blurContainer') as HTMLElement
   //why semincolon is requiered here
   (modal.querySelector('.modalTaskName input') as HTMLInputElement).value = taskName;
   (modal.querySelector('.modalDescription input') as HTMLInputElement).value = description;

@@ -51,7 +51,6 @@ export function getNewDoneTask({ taskName, key }: newDoneTask) {
       <i class="material-icons toDelete">	&#xe872; </i>
     </span>
   `
-
   return div;
 }
 

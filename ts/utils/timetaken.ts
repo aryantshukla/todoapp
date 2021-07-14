@@ -3,13 +3,14 @@ import { showAlert } from "./alert.js";
 import Efficiency from '../analysis/efficiency.js'
 import Power from '../analysis/power.js'
 import { Task } from "../interfaces/interfaces.js";
+import Database from "../database.js";
 
 
 let efficiencyAnalysis = new Efficiency();
 let powerAnalysis = new Power();
-const modal = document.querySelector('.askTime') as HTMLDivElement
-const blurContainer = document.querySelector('.blurContainer') as HTMLElement
-const taskCompleted = document.getElementsByClassName('completed')[0] as HTMLElement
+const modal = document.getElementsByClassName('askTime')[0]
+const blurContainer = document.getElementsByClassName('blurContainer')[0]
+const taskCompleted = document.querySelector('[data-id="completed"]') as HTMLElement
 
 function askForTime(_key: string) {
   return new Promise((resolve: (value: number) => void) => {
@@ -19,8 +20,8 @@ function askForTime(_key: string) {
     blurContainer.classList.add('blur')
 
     function handleClick(event: Event) {
-      const cancelbtn = modal.querySelector('.cancelTime')
-      const submitbtn = modal.querySelector('.submitTime')
+      const cancelbtn = modal.querySelector('[data-id="cancelTime"]')
+      const submitbtn = modal.querySelector('[data-id="submitTime"]')
       if (event.target === cancelbtn) {
         modal.classList.toggle('modalHidden')
         modal.classList.toggle('modalShow')
@@ -33,7 +34,7 @@ function askForTime(_key: string) {
         modal.classList.toggle('modalShow')
         blurContainer.classList.remove('blur')
         modal.removeEventListener('click', handleClick)
-        let val: number = Number((modal.querySelector('input') as HTMLInputElement).value)
+        let val: number = Number((modal.getElementsByTagName('input')[0]).value)
         if (!val)
           val = -1
         resolve(val)
@@ -62,14 +63,15 @@ export function removeTask(_key: string, event: Event) {
         const newDiv = document.createElement('div')
         if (newDiv === null)
           return
-        const divToDeleteData: Task = JSON.parse(localStorage.getItem(_key) as string)
+        const divToDeleteData: Task = Database.getItem(_key)
+
         const iTime: number = Number(divToDeleteData.timeRequired);
         const fline: string = (new Date()).toLocaleDateString('en-GB')
         const dLine: string = divToDeleteData.deadLine;
 
         divToDeleteData.done = 1;
 
-        localStorage.setItem(_key, JSON.stringify(divToDeleteData))
+        Database.setItem(divToDeleteData)
 
         newDiv.classList.add('taskItem', 'done')
         newDiv.innerHTML = getDelete(divToDelete)
@@ -90,7 +92,10 @@ export function removeTask(_key: string, event: Event) {
 
 
 export function getSec(fLine: string, us_encode = false): number {
-  if (us_encode)
-    return Number(fLine.slice(0, 4)) * 30000 + Number(fLine.slice(5, 7)) * 300 + Number(fLine.slice(9))
+
+  if (us_encode) {
+    console.log(fLine);
+    return Number(fLine.slice(0, 4)) * 300000 + Number(fLine.slice(5, 7)) * 3000 + Number(fLine.slice(8))
+  }
   return Number(fLine.slice(6)) * 30000 + Number(fLine.slice(3, 5)) * 300 + Number(fLine.slice(0, 2))
 }
