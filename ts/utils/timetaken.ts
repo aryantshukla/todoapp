@@ -90,7 +90,6 @@ export function removeTask(_key: string, event: Event) {
     })
 }
 
-
 export function getSec(fLine: string, us_encode = false): number {
 
   if (us_encode) {

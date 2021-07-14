@@ -27,7 +27,7 @@ export function getNewTask({ taskName, priority, deadLine, key }: Task) {
 
   const span2 = document.createElement('span')
   span2.innerHTML = `<i class="material-icons info">info_outline</i>
-                    <i class="material-icons markDone">&#xe876; </i>  `
+                    <i class="material-icons" data-id="markDone">&#xe876; </i>  `
 
   div.append(paragraph)
   div.append(hr)

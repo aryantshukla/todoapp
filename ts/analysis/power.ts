@@ -61,8 +61,6 @@ export default class Power {
     return Math.max(efficiency, 0)
   }
 
-
-
   addNewItem(iTime: number, tTime: number, dLine: string, fline: string) {
 
     this.idealTime.push(iTime)
@@ -96,7 +94,7 @@ export default class Power {
     }
     sigmaSum /= 10;
     this.rectify();
-    this.power = this.power + (this.rating_deviation ** 2) * sigmaSum
+    this.power = this.power + ((this.rating_deviation ** 2) * sigmaSum) / 10
 
     this.updatePower();
   }

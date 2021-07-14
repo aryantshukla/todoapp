@@ -29,7 +29,6 @@ taskList.addEventListener('click', (event) => {
       showAlert('key not found,Error')
       return
     }
-
     const taskForModal = Database.getItem(_key)
     showModal(taskForModal)
     event.stopPropagation();
@@ -50,7 +49,7 @@ taskList.addEventListener('click', (event) => {
     showModal(taskForModal)
     event.stopPropagation();
   }
-  else if (eventTarget.classList.contains('markDone')) {
+  else if (eventTarget.dataset.id === 'markDone') {
     if (eventTarget.parentElement === null || eventTarget.parentElement.parentElement === null) {
       showAlert('couldnt find parent, error')
       return
@@ -90,13 +89,12 @@ modal.addEventListener('click', (event) => {
 
   const eventTarget = event.target as HTMLElement
 
-  if (eventTarget.classList.contains('close')) {
+  if (eventTarget.dataset.id === 'close') {
     if (modal.classList.contains('modalShow')) {
       hidemodal();
     }
   }
-
-  if (eventTarget.classList.contains('markDone')) {
+  if (eventTarget.dataset.id === 'modalMarkDone') {
     hidemodal();
     const _key = modal.dataset.key
     if (isKeyUndefined(_key)) {
@@ -106,7 +104,7 @@ modal.addEventListener('click', (event) => {
     removeTask(_key, event)
   }
 
-  if (eventTarget.classList.contains('saveChanges')) {
+  if (eventTarget.dataset.id === 'saveChanges') {
 
     try {
       const newTaskName = (modal.querySelector('.modalTaskName input') as HTMLInputElement).value
@@ -148,7 +146,6 @@ modal.addEventListener('click', (event) => {
     }
   }
 })
-
 
 window.addEventListener('click', (event) => {
   const eventTarget = event.target as HTMLElement

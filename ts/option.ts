@@ -34,8 +34,6 @@ options.addEventListener('click', (event) => {
       _child.parentNode.removeChild(_child)
     }
     Database.clearAll();
-
-
   }
   if (eventTarget.id === 'op4' || eventTarget.id === 'op5') {
     const container = document.getElementsByClassName('taskContainer')[0] as HTMLElement
