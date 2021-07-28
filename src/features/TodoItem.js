@@ -16,7 +16,6 @@ export const TodoItem = (props) => {
       dispatch(markTodoDone(id))
     }
   }
-
   const showModal = (event) => {
     event.preventDefault();
     updateModal({

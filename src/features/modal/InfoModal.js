@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 
-import { editTodo, markTodoDone, editFromLocalStorage } from '../todoSlice'
+import { markTodoDone, editFromLocalStorage } from '../todoSlice'
 
 import { ModalContext } from '../../context.js'
 
@@ -46,7 +46,7 @@ export const InfoModal = (props) => {
   const handleMarkDone = (event) => {
     event.preventDefault();
     if (todoStatus === 'idle') {
-      dispatch(markTodoDone(todoDetails.id))
+      dispatch(markTodoDone(id))
     }
     hideModal(event);
   }

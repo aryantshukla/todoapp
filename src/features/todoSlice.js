@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { getNumberFromPriority, getNumberofSec } from "../utils/utils";
 
 export const saveOnLocalStorage = createAsyncThunk('todoList/saveOnLocalStorage', async (todo) => {
   const todos = JSON.parse(localStorage.getItem('todos')) || []
@@ -48,22 +49,63 @@ export const todoSlice = createSlice({
     lastOperation: 'idle',
   },
   reducers: {
-    deleteTodo: (state, action) => ({
-      ...state,
-      todos: state.todos.map(todo => {
-        if (todo.id !== action.payload.id) {
-          return todo
-        }
-        return {
-          ...todo,
-          done: "1"
-        }
-      })
-    }),
     permanentDelete: (state, action) => ({
       ...state,
       todos: state.todos.filter(todo => todo.id !== action.payload.id)
     }),
+
+    sortTodosByPriorityHigh: (state) => {
+      const todos = Array.from(state.todos)
+      todos.sort(function (a, b) {
+        const numA = getNumberFromPriority(a.priority)
+        const numB = getNumberFromPriority(b.priority)
+        return numB - numA
+      })
+      return ({
+        ...state,
+        todos,
+        lastOperation: 'fetch',
+      })
+    },
+    sortTodosByPriorityLow: (state) => {
+      const todos = Array.from(state.todos)
+      todos.sort(function (a, b) {
+        const numA = getNumberFromPriority(a.priority)
+        const numB = getNumberFromPriority(b.priority)
+        return numA - numB
+      })
+      return ({
+        ...state,
+        todos,
+        lastOperation: 'fetch',
+      })
+    },
+    sortTodosByDeadlineEarly: (state) => {
+      const todos = Array.from(state.todos)
+      todos.sort(function (a, b) {
+        const numA = getNumberofSec(a.deadLine)
+        const numB = getNumberofSec(b.deadLine)
+        return numA - numB
+      })
+      return ({
+        ...state,
+        todos,
+        lastOperation: 'fetch',
+      })
+    },
+    sortTodosByDeadlineLate: (state) => {
+      const todos = Array.from(state.todos)
+      todos.sort(function (a, b) {
+        const numA = getNumberofSec(a.deadLine)
+        const numB = getNumberofSec(b.deadLine)
+        return numB - numA
+      })
+      return ({
+        ...state,
+        todos,
+        lastOperation: 'fetch',
+      })
+    }
 
   },
   extraReducers: {
@@ -86,6 +128,7 @@ export const todoSlice = createSlice({
     }),
     [saveOnLocalStorage.fulfilled]: (state, action) => ({
       ...state,
+      status: 'idle',
       lastOperation: 'save',
       todos: state.todos.concat([action.payload])
     }),
@@ -115,5 +158,11 @@ export const todoSlice = createSlice({
   }
 })
 
-export const { deleteTodo, permanentDelete } = todoSlice.actions
+export const {
+  sortTodosByPriority,
+  permanentDelete,
+  sortTodosByPriorityHigh,
+  sortTodosByPriorityLow,
+  sortTodosByDeadlineEarly,
+  sortTodosByDeadlineLate } = todoSlice.actions
 export default todoSlice.reducer

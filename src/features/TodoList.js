@@ -4,7 +4,6 @@ import { TodoItemDone } from "./TodoItemDone"
 export const TodoList = (props) => {
 
   const todos = props.todos
-  console.log('in todolist ', todos)
 
   const completed =
     todos.filter(todo => todo.done === "0")
