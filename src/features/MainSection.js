@@ -8,16 +8,16 @@ import { getFromLocalStorage } from './todoSlice'
 
 export const MainSection = () => {
 
-  const todos = useSelector(state => state.todoList.todos)
   const todoStatus = useSelector(state => state.todoList.status)
+  const todos = useSelector(state => state.todoList.todos)
+  const lastOperation = useSelector(state => state.todoList.lastOperation)
   const dispatch = useDispatch();
 
-
   useEffect(() => {
-    if (todoStatus === 'idle') {
+    if (todoStatus === 'idle' && lastOperation !== 'fetch') {
       dispatch(getFromLocalStorage())
     }
-  }, [todoStatus, dispatch])
+  }, [todoStatus, dispatch, lastOperation])
 
   return (
     <main className="application">

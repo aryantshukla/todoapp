@@ -1,21 +1,20 @@
 import { useContext } from "react"
-import { useDispatch } from "react-redux"
-import { deleteTodo } from './todoSlice'
+import { useDispatch, useSelector } from "react-redux"
+import { markTodoDone } from './todoSlice'
 import { ModalContext } from '../context.js'
 
 export const TodoItem = (props) => {
 
   const { priority, taskName, deadLine, id } = props.state
-
   const { updateModal } = useContext(ModalContext)
-
   const dispatch = useDispatch()
+  const todoStatus = useSelector(state => state.todoList.status)
 
-  const handleClick = (event) => {
+  const handleMarkDone = (event) => {
     event.preventDefault();
-    dispatch(deleteTodo({
-      id
-    }))
+    if (todoStatus === 'idle') {
+      dispatch(markTodoDone(id))
+    }
   }
 
   const showModal = (event) => {
@@ -33,7 +32,7 @@ export const TodoItem = (props) => {
       <span>{`DeadLine:${deadLine}`}</span>
       <span>
         <i className="material-icons info" onClick={showModal}>info_outline</i>
-        <i className="material-icons markDone" onClick={handleClick}>&#xe876; </i>
+        <i className="material-icons markDone" onClick={handleMarkDone}>&#xe876; </i>
       </span>
     </div>
   )

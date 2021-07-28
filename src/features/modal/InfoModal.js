@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
-import { editTodo, deleteTodo } from '../todoSlice'
+import { editTodo, markTodoDone, editFromLocalStorage } from '../todoSlice'
 
 import { ModalContext } from '../../context.js'
 
@@ -11,11 +11,11 @@ export const InfoModal = (props) => {
   const { updateModal } = useContext(ModalContext)
   const dispatch = useDispatch()
   const [todoDetails, setTodoDetails] = useState(props.details)
+  const todoStatus = useSelector(state => state.todoList.status)
 
   useEffect(() => {
     setTodoDetails(props.details)
   }, [props.details])
-
 
   if (!show) {
     return null;
@@ -37,15 +37,17 @@ export const InfoModal = (props) => {
 
   const handleSaveChanges = (event) => {
     event.preventDefault();
-    dispatch(editTodo({ ...todoDetails }))
+    if (todoStatus === 'idle') {
+      dispatch(editFromLocalStorage({ ...todoDetails }))
+    }
     hideModal(event);
   }
 
-  const markDone = (event) => {
+  const handleMarkDone = (event) => {
     event.preventDefault();
-    dispatch(deleteTodo({
-      id
-    }))
+    if (todoStatus === 'idle') {
+      dispatch(markTodoDone(todoDetails.id))
+    }
     hideModal(event);
   }
 
@@ -70,7 +72,7 @@ export const InfoModal = (props) => {
       </div>
       <div className="btnContainer">
         <button type="close" className="close btn" onClick={hideModal}>Close</button>
-        <button className="markDone btn" onClick={markDone}>Mark as Done</button>
+        <button className="markDone btn" onClick={handleMarkDone}>Mark as Done</button>
         <button type="submit" className="saveChanges btn" onClick={handleSaveChanges}>Save Changes</button>
       </div>
     </div>
