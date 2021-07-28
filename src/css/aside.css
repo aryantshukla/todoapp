@@ -1,0 +1,48 @@
+.analysis {
+  order: 3;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+body[data-theme="light"] .analysis {
+  background-color: #eee;
+}
+
+.analysis:hover {
+  box-shadow: 0px 0px 1.5em var(--mainColor);
+}
+.analysis:hover ~ section {
+  border-right: 0ch var(--mainColor) solid;
+}
+
+.specContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.rate {
+  width: 85%;
+  height: 2rem;
+  margin-bottom: 1rem;
+  color: var(--dead);
+}
+
+.rate > * {
+  height: 2rem;
+  padding-left: 20%;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+.option {
+  flex: 1;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.option:hover {
+  cursor: pointer;
+  text-shadow: 0px 0px 1em var(--btnColor);
+}

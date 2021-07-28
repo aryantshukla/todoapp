@@ -1,0 +1,62 @@
+body[data-theme="dark"] {
+  --mainColor: #39ff14;
+  --p1: orange;
+  --p2: yellow;
+  --p3: white;
+  --dead: white;
+  --onNeon: black;
+  --colorHR: red;
+  --btnColor: #39ff14;
+
+  background: black;
+}
+body[data-theme="light"] {
+  --mainColor: black;
+  --p1: #c02f1d;
+  --p3: #0e5469;
+  --p2: blue;
+  --dead: #565151;
+  --onNeon: white;
+  --colorHR: #01172f;
+  --btnColor: #216b82;
+
+  background: white;
+}
+body {
+  position: relative;
+  color: var(--mainColor);
+  font-family: mukta;
+  height: 100vh;
+}
+
+.application {
+  height: 80vh;
+  display: grid;
+  grid-template-columns: 20% auto 20%;
+}
+
+.application > * {
+  height: 80vh;
+  overflow-y: scroll;
+}
+hr {
+  border: 1px var(--colorHR) solid;
+}
+.errMsg {
+  position: absolute;
+  bottom: 1rem;
+  width: 80%;
+  background-color: #fce4e4;
+  color: #cc0033;
+  border: 1px solid #fcc2c3;
+  font-weight: bold;
+  height: 3rem;
+  border-radius: 4px;
+  left: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.blur {
+  filter: blur(1em);
+}
