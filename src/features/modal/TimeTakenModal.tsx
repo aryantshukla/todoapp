@@ -1,12 +1,17 @@
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useDispatch } from "react-redux";
 import { ModalContext } from "../../context";
 import { Button } from "../button/Button";
 import { markTodoDone } from '../todoSlice'
 import { updateEfficieny } from '../Efficiency/efficiencySlice'
+import { todoType } from "../../types/types";
 
+type PropsTimeTakenModal = {
+  show:string,
+  details:todoType
+}
 
-export const TimeTakenModal = (props) => {
+export const TimeTakenModal = (props:PropsTimeTakenModal) => {
 
   const dispatch = useDispatch();
   const [timeTaken, setTimeTaken] = useState("")
@@ -19,22 +24,22 @@ export const TimeTakenModal = (props) => {
     return null
   }
 
-  const handleChange = (event) => {
+  const handleChange = (event:React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     setTimeTaken(event.target.value)
   }
-  const handleSubmitClick = (event) => {
+  const handleSubmitClick = (event:React.MouseEvent) => {
     event.preventDefault();
     dispatch(updateEfficieny({
-      timeTaken,
-      timeRequired
+      timeTaken:Number(timeTaken),
+      timeRequired:Number(timeRequired)
     }))
     dispatch(markTodoDone(id))
     handleCancelClick(event)
   }
-  const handleCancelClick = (event) => {
+  const handleCancelClick = (event:React.MouseEvent) => {
     event.preventDefault();
-    updateModal({ showModal: 'nomodal', details: {} })
+    updateModal({ showModal: 'nomodal', details: {} as todoType })
   }
 
   return (

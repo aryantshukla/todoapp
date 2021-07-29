@@ -1,12 +1,17 @@
 import { TodoItem } from "./TodoItem"
 import { TodoItemDone } from "./TodoItemDone"
+import { todoType } from "../types/types"
 
-export const TodoList = (props) => {
+type PropsTodoType = {
+  todos:todoType[]
+}
 
-  const todos = props.todos
+export const TodoList = (props:PropsTodoType) => {
+
+  const todos:todoType[] = props.todos
 
   const completed =
-    todos.filter(todo => todo.done === "0")
+    todos.filter((todo:todoType) => todo.done === "0")
       .map(todo =>
         <TodoItem state={todo} key={todo.id} />
       )

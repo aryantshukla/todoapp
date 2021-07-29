@@ -1,15 +1,16 @@
-import { useDispatch } from "react-redux";
-import { permanentDelete } from "./todoSlice";
+import { todoType } from "../types/types";
+// import { permanentDelete } from "./todoSlice";
 
+type PropsTodoItemDone = {
+  state:todoType
+}
 
-export const TodoItemDone = (props) => {
+export const TodoItemDone = (props:PropsTodoItemDone) => {
 
-  const dispatch = useDispatch
   const { id, taskName } = props.state
 
-  const handleClick = (event) => {
-    event.preventDefault();
-    dispatch(permanentDelete({ id }))
+  const handleClick = () => {
+    // dispatch(permanentDelete(id))
   }
 
   return (

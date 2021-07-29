@@ -1,25 +1,27 @@
-import React from 'react';
 import { useState } from 'react';
 import { MainSection } from './features/MainSection';
 import { Header } from './Header';
-import { InfoModal } from './features/modal/InfoModal.js'
+import { InfoModal } from './features/modal/InfoModal'
 import { ModalContext } from './context';
 import { TimeTakenModal } from './features/modal/TimeTakenModal';
 
 import './App.css';
+import { todoType } from './types/types';
+
+import { updateModalProps } from './types/types';
+
 
 function App() {
 
   const [showModal, setShowModal] = useState('nomodal')
-  const [details, setDetails] = useState(() => ({}))
-  const [theme, setTheme] = useState('light')
+  const [details, setDetails] = useState<todoType>({} as todoType)
+  const [theme, setTheme] = useState<'light'|'dark'>('light')
 
-  const handleChangeTheme = (event) => {
-    event.preventDefault();
+  const handleChangeTheme = () => {
     setTheme(state => (state === 'light' ? 'dark' : 'light'))
   }
 
-  const updateModal = ({ showModal, details }) => {
+  const updateModal = ({ showModal, details }:updateModalProps) => {
     setShowModal(showModal)
     setDetails(details)
   }

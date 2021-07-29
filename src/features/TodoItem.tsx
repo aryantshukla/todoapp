@@ -1,14 +1,17 @@
-import { useContext } from "react"
+import React, { useContext } from "react"
 import { useSelector } from "react-redux"
-import { ModalContext } from '../context.js'
+import { RootState } from "../app/store"
+import { ModalContext } from '../context'
+import { todoType } from "../types/types"
 
-export const TodoItem = (props) => {
+
+export const TodoItem = (props:{state:todoType}) => {
 
   const { priority, taskName, deadLine, id } = props.state
   const { updateModal } = useContext(ModalContext)
-  const todoStatus = useSelector(state => state.todoList.status)
+  const todoStatus = useSelector((state:RootState) => state.todoList.status)
 
-  const handleMarkDone = (event) => {
+  const handleMarkDone = (event:React.MouseEvent) => {
     event.preventDefault();
     if (todoStatus === 'idle') {
       updateModal({
@@ -17,7 +20,7 @@ export const TodoItem = (props) => {
       })
     }
   }
-  const showModal = (event) => {
+  const showModal = (event:React.MouseEvent) => {
     event.preventDefault();
     updateModal({
       showModal: 'infomodal',

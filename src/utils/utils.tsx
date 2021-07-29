@@ -1,4 +1,4 @@
-export const getNumberFromPriority = (priority) => {
+export const getNumberFromPriority = (priority:string) => {
   switch (priority) {
     case "HIGH": return 3
     case "MEDIUM": return 2
@@ -6,8 +6,8 @@ export const getNumberFromPriority = (priority) => {
     default: return 0
   }
 }
-export function getNumberofSec(dateToConvert, us_encode = true) {
-  let ans;
+export function getNumberofSec(dateToConvert:string, us_encode = true) {
+  let ans:number;
   if (us_encode === true) {
     ans = Number(dateToConvert.slice(0, 4)) * 1e7 + Number(dateToConvert.slice(5, 7)) * 1e3 + Number(dateToConvert.slice(8))
   }

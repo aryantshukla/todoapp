@@ -1,4 +1,6 @@
-export const Description = (props) => {
+import {PropsTypeFrom} from '../../types/types'
+
+export const Description = (props:PropsTypeFrom) => {
   const { value, handleChange } = props
   return (
     <div className="formElement">

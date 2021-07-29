@@ -1,4 +1,6 @@
-export const TimeRequired = (props) => {
+import {PropsTypeFrom} from '../../types/types'
+
+export const TimeRequired = (props:PropsTypeFrom) => {
   const { value, handleChange } = props
   return (
     <div className="formElement">

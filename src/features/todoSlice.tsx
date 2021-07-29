@@ -1,21 +1,24 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { getNumberFromPriority, getNumberofSec } from "../utils/utils";
 
-export const saveOnLocalStorage = createAsyncThunk('todoList/saveOnLocalStorage', async (todo) => {
-  const todos = JSON.parse(localStorage.getItem('todos')) || []
+import {todoType} from '../types/types'
+
+
+export const saveOnLocalStorage = createAsyncThunk('todoList/saveOnLocalStorage', async (todo:todoType) => {
+  const todos = JSON.parse(localStorage.getItem('todos') as string) || []
   todos.push(todo)
   localStorage.setItem('todos', JSON.stringify(todos))
   return todo
 })
 
 export const getFromLocalStorage = createAsyncThunk('todoList/getFromLocalStorage', async () => {
-  const todos = JSON.parse(localStorage.getItem('todos')) || []
+  const todos = JSON.parse(localStorage.getItem('todos') as string) || []
   return todos
 })
 
-export const editFromLocalStorage = createAsyncThunk('todoList/editFromLocalStorage', async (todo) => {
-  let todos = JSON.parse(localStorage.getItem('todos')) || []
-  todos = todos.map(item => {
+export const editFromLocalStorage = createAsyncThunk('todoList/editFromLocalStorage', async (todo:todoType) => {
+  let todos:todoType[] = JSON.parse(localStorage.getItem('todos') as string) || []
+  todos = todos.map((item:todoType) => {
     if (item.id === todo.id) {
       return todo
     }
@@ -25,9 +28,9 @@ export const editFromLocalStorage = createAsyncThunk('todoList/editFromLocalStor
   return todos
 })
 
-export const markTodoDone = createAsyncThunk('todoList/markTodoDone', async (id) => {
-  let todos = JSON.parse(localStorage.getItem('todos')) || []
-  todos = todos.map(item => {
+export const markTodoDone = createAsyncThunk('todoList/markTodoDone', async (id:string) => {
+  let todos = JSON.parse(localStorage.getItem('todos') as string) || []
+  todos = todos.map((item:todoType) => {
     if (item.id === id) {
       return {
         ...item,
@@ -40,23 +43,30 @@ export const markTodoDone = createAsyncThunk('todoList/markTodoDone', async (id)
   return todos
 })
 
+const initialState:{
+  todos:todoType[],
+  status:string,
+  error:string|null,
+  lastOperation:string
+} = {
+  todos: [],
+  status: 'idle',
+  error: null,
+  lastOperation: 'idle',
+}
+
 export const todoSlice = createSlice({
   name: "todoList",
-  initialState: {
-    todos: [],
-    status: 'idle',
-    error: null,
-    lastOperation: 'idle',
-  },
+  initialState,
   reducers: {
-    permanentDelete: (state, action) => ({
+    permanentDelete: (state, action:PayloadAction<string>) => ({
       ...state,
-      todos: state.todos.filter(todo => todo.id !== action.payload.id)
+      todos: state.todos.filter((todo:todoType) => todo.id !== action.payload)
     }),
 
     sortTodosByPriorityHigh: (state) => {
       const todos = Array.from(state.todos)
-      todos.sort(function (a, b) {
+      todos.sort(function (a:todoType, b:todoType) {
         const numA = getNumberFromPriority(a.priority)
         const numB = getNumberFromPriority(b.priority)
         return numB - numA
@@ -69,7 +79,7 @@ export const todoSlice = createSlice({
     },
     sortTodosByPriorityLow: (state) => {
       const todos = Array.from(state.todos)
-      todos.sort(function (a, b) {
+      todos.sort(function (a:todoType, b:todoType) {
         const numA = getNumberFromPriority(a.priority)
         const numB = getNumberFromPriority(b.priority)
         return numA - numB
@@ -82,7 +92,7 @@ export const todoSlice = createSlice({
     },
     sortTodosByDeadlineEarly: (state) => {
       const todos = Array.from(state.todos)
-      todos.sort(function (a, b) {
+      todos.sort(function (a:todoType, b:todoType) {
         const numA = getNumberofSec(a.deadLine)
         const numB = getNumberofSec(b.deadLine)
         return numA - numB
@@ -95,7 +105,7 @@ export const todoSlice = createSlice({
     },
     sortTodosByDeadlineLate: (state) => {
       const todos = Array.from(state.todos)
-      todos.sort(function (a, b) {
+      todos.sort(function (a:todoType, b:todoType) {
         const numA = getNumberofSec(a.deadLine)
         const numB = getNumberofSec(b.deadLine)
         return numB - numA
@@ -106,60 +116,62 @@ export const todoSlice = createSlice({
         lastOperation: 'fetch',
       })
     }
-
   },
-  extraReducers: {
-    [getFromLocalStorage.fulfilled]: (state, action) => ({
+  extraReducers: (builder) =>{
+    builder.addCase(getFromLocalStorage.fulfilled,(state, action) => ({
       ...state,
       status: 'idle',
       lastOperation: 'fetch',
       todos: action.payload
-    }),
-    [getFromLocalStorage.pending]: (state, action) => ({
+    }))
+    builder.addCase(getFromLocalStorage.pending, (state, action) => ({
       ...state,
       lastOperation: 'fetch',
       status: 'loading'
-    }),
-    [getFromLocalStorage.rejected]: (state, action) => ({
-      ...state,
-      status: 'failed',
-      lastOperation: 'fetch',
-      error: action.error.message
-    }),
-    [saveOnLocalStorage.fulfilled]: (state, action) => ({
+    }))
+    builder.addCase(saveOnLocalStorage.fulfilled, (state, action) => ({
       ...state,
       status: 'idle',
       lastOperation: 'save',
       todos: state.todos.concat([action.payload])
-    }),
-    [editFromLocalStorage.pending]: (state, action) => ({
+    }))
+    builder.addCase(editFromLocalStorage.pending, (state, action) => ({
       ...state,
       lastOperation: 'edit',
       status: 'loading'
-    }),
-    [editFromLocalStorage.fulfilled]: (state, action) => ({
+    }))
+
+    builder.addCase(editFromLocalStorage.fulfilled, (state, action) => ({
       ...state,
       status: 'idle',
       lastOperation: 'edit',
       todos: action.payload
-    }),
-    [editFromLocalStorage.rejected]: (state, action) => ({
-      ...state,
-      status: 'failed',
-      lastOperation: 'edit',
-      error: action.payload
-    }),
-    [markTodoDone.fulfilled]: (state, action) => ({
+    }))
+    builder.addCase(markTodoDone.fulfilled, (state, action) => ({
       ...state,
       status: 'idle',
       lastOperation: 'markdone',
       todos: action.payload
-    })
+    }))
+
   }
+  // {
+  //   [getFromLocalStorage.rejected]: (state, action) => ({
+  //     ...state,
+  //     status: 'failed',
+  //     lastOperation: 'fetch',
+  //     error: action.error.message
+  //   }),
+  //   [editFromLocalStorage.rejected]: (state, action) => ({
+  //     ...state,
+  //     status: 'failed',
+  //     lastOperation: 'edit',
+  //     error: action.payload
+  //   }),
+  // }
 })
 
 export const {
-  sortTodosByPriority,
   permanentDelete,
   sortTodosByPriorityHigh,
   sortTodosByPriorityLow,

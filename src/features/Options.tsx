@@ -1,25 +1,27 @@
 import { useDispatch, useSelector } from "react-redux"
+import { RootState } from "../app/store"
 import { sortTodosByPriorityHigh, sortTodosByPriorityLow, sortTodosByDeadlineLate, sortTodosByDeadlineEarly } from "./todoSlice"
 
 export const Options = () => {
 
   const dispatch = useDispatch()
-  const todoStatus = useSelector(state => state.todoList.status)
+  const todoStatus = useSelector((state:RootState) => state.todoList.status)
 
-  const handleClick = (event) => {
+  const handleClick = (event:React.MouseEvent) => {
     if (todoStatus !== 'idle') {
       return
     }
-    if (event.target.id === "op2") {
+    const eventTarget = event.target as HTMLElement
+    if (eventTarget.id === "op2") {
       dispatch(sortTodosByPriorityHigh())
     }
-    if (event.target.id === "op3") {
+    if (eventTarget.id === "op3") {
       dispatch(sortTodosByPriorityLow())
     }
-    if (event.target.id === "op4") {
+    if (eventTarget.id === "op4") {
       dispatch(sortTodosByDeadlineEarly())
     }
-    if (event.target.id === "op5") {
+    if (eventTarget.id === "op5") {
       dispatch(sortTodosByDeadlineLate())
     }
 

@@ -2,7 +2,9 @@ import './App.css';
 import moon from './moon.png'
 import sun from './sun.png'
 
-export const Header = (props) => {
+import { PropsHeaderType } from './types/types';
+
+export const Header = (props:PropsHeaderType) => {
 
   return (
     <div className="headerContainer">

@@ -1,9 +1,12 @@
-export const Priority = (props) => {
-  const { value, handleChange } = props
+import {PropsTypeFrom} from '../../types/types'
+
+
+export const Priority = (props:PropsTypeFrom) => {
+  const { handleChange } = props
   return (
     <div className="formElement">
       Priority:
-      <div className="selectPriority" value={value} onChange={handleChange}>
+      <div className="selectPriority" onChange={handleChange}>
         <label htmlFor="high" className="p1">
           <input
             id="high"

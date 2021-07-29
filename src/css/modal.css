@@ -26,6 +26,7 @@
 }
 .modalShow {
   display: flex;
+  background-color: var(--onNeon);
 }
 
 .showInfo div {

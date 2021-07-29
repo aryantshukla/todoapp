@@ -1,17 +1,20 @@
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { editFromLocalStorage } from '../todoSlice'
 
-import { ModalContext } from '../../context.js'
+import { ModalContext } from '../../context'
 import { Button } from "../button/Button";
+import { todoType,PropsInfoModal } from "../../types/types";
+import { RootState } from "../../app/store";
+ 
 
-export const InfoModal = (props) => {
+export const InfoModal = (props:PropsInfoModal) => {
 
   const { show } = props
   const { updateModal } = useContext(ModalContext)
   const dispatch = useDispatch()
   const [todoDetails, setTodoDetails] = useState(props.details)
-  const todoStatus = useSelector(state => state.todoList.status)
+  const todoStatus = useSelector((state:RootState) => state.todoList.status)
 
   useEffect(() => {
     setTodoDetails(props.details)
@@ -22,20 +25,21 @@ export const InfoModal = (props) => {
   }
   const { taskName, deadLine, description, timeRequired } = todoDetails;
 
-  const hideModal = (event) => {
+  const hideModal = (event:React.MouseEvent) => {
     event.preventDefault();
-    updateModal({ showModal: 'nomodal', details: {} })
+    updateModal({ showModal: 'nomodal', details: {} as todoType })
   }
 
-  const handleChange = (event) => {
+  const handleChange = (event :React.ChangeEvent) => {
     event.preventDefault()
-    setTodoDetails(state => ({
+    const eventTarget = event.target as HTMLInputElement
+    setTodoDetails((state) => ({
       ...state,
-      [event.target.name]: event.target.value
+      [eventTarget.name]: eventTarget.value
     }))
   }
 
-  const handleSaveChanges = (event) => {
+  const handleSaveChanges = (event:React.MouseEvent) => {
     event.preventDefault();
     if (todoStatus === 'idle') {
       dispatch(editFromLocalStorage({ ...todoDetails }))
@@ -43,7 +47,7 @@ export const InfoModal = (props) => {
     hideModal(event);
   }
 
-  const handleMarkDone = (event) => {
+  const handleMarkDone = (event:React.MouseEvent) => {
     event.preventDefault();
     updateModal({ showModal: 'timetakenmodal', details: { ...props.details } })
   }
