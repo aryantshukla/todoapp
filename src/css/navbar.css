@@ -1,4 +1,4 @@
-body[data-theme="light"] .navbar {
+.themeContainer[data-theme="light"] .navbar {
   background-color: #eee;
 }
 

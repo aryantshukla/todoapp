@@ -8,11 +8,16 @@ import { TimeTakenModal } from './features/modal/TimeTakenModal';
 
 import './App.css';
 
-
 function App() {
 
   const [showModal, setShowModal] = useState('nomodal')
   const [details, setDetails] = useState(() => ({}))
+  const [theme, setTheme] = useState('light')
+
+  const handleChangeTheme = (event) => {
+    event.preventDefault();
+    setTheme(state => (state === 'light' ? 'dark' : 'light'))
+  }
 
   const updateModal = ({ showModal, details }) => {
     setShowModal(showModal)
@@ -22,13 +27,15 @@ function App() {
 
   return (
     <ModalContext.Provider value={{ updateModal }}>
-      <InfoModal show={showModal} details={details} />
-      <TimeTakenModal show={showModal} details={details} />
-      <main className={classForBlurContainer}>
-        <Header />
-        <MainSection />
-      </main>
-    </ModalContext.Provider>
+      <div className="themeContainer" data-theme={theme}>
+        <InfoModal show={showModal} details={details} />
+        <TimeTakenModal show={showModal} details={details} />
+        <main className={classForBlurContainer}>
+          <Header onClick={handleChangeTheme} theme={theme} />
+          <MainSection />
+        </main>
+      </div>
+    </ModalContext.Provider >
   );
 }
 

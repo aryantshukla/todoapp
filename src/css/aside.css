@@ -4,7 +4,7 @@
   padding-right: 2rem;
 }
 
-body[data-theme="light"] .analysis {
+.themeContainer[data-theme="light"] .analysis {
   background-color: #eee;
 }
 

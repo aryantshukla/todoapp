@@ -5,7 +5,7 @@
   padding-right: 4rem;
 }
 
-body[data-theme="light"] .taskList {
+.themeContainer[data-theme="light"] .taskList {
   background-color: rgb(237, 236, 249, 0.6);
 }
 
@@ -25,7 +25,7 @@ body[data-theme="light"] .taskList {
   justify-content: flex-start;
 }
 
-body[data-theme="light"] .taskItem {
+.themeContainer[data-theme="light"] .taskItem {
   background-color: white;
 }
 
