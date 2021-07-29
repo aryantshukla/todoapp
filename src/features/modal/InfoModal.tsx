@@ -1,12 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux'
-import { editFromLocalStorage } from '../todoSlice'
+import { editFromLocalStorage, getTodoListStatus } from '../todoSlice'
 
 import { ModalContext } from '../../context'
 import { Button } from "../button/Button";
 import { todoType,PropsInfoModal } from "../../types/types";
-import { RootState } from "../../app/store";
- 
+import { useCallback } from "react";
 
 export const InfoModal = (props:PropsInfoModal) => {
 
@@ -14,7 +13,7 @@ export const InfoModal = (props:PropsInfoModal) => {
   const { updateModal } = useContext(ModalContext)
   const dispatch = useDispatch()
   const [todoDetails, setTodoDetails] = useState(props.details)
-  const todoStatus = useSelector((state:RootState) => state.todoList.status)
+  const todoStatus = useSelector(getTodoListStatus)
 
   useEffect(() => {
     setTodoDetails(props.details)
@@ -25,27 +24,27 @@ export const InfoModal = (props:PropsInfoModal) => {
   }
   const { taskName, deadLine, description, timeRequired } = todoDetails;
 
-  const hideModal = (event:React.MouseEvent) => {
+  const hideModal = useCallback((event:React.MouseEvent) => {
     event.preventDefault();
     updateModal({ showModal: 'nomodal', details: {} as todoType })
-  }
+  },[])
 
-  const handleChange = (event :React.ChangeEvent) => {
+  const handleChange = useCallback((event :React.ChangeEvent) => {
     event.preventDefault()
     const eventTarget = event.target as HTMLInputElement
     setTodoDetails((state) => ({
       ...state,
       [eventTarget.name]: eventTarget.value
     }))
-  }
+  },[])
 
-  const handleSaveChanges = (event:React.MouseEvent) => {
+  const handleSaveChanges = useCallback( (event:React.MouseEvent) => {
     event.preventDefault();
     if (todoStatus === 'idle') {
       dispatch(editFromLocalStorage({ ...todoDetails }))
     }
     hideModal(event);
-  }
+  },[dispatch])
 
   const handleMarkDone = (event:React.MouseEvent) => {
     event.preventDefault();

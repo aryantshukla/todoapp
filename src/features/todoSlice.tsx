@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { getNumberFromPriority, getNumberofSec } from "../utils/utils";
-
+import { RootState } from "../app/store";
 import {todoType} from '../types/types'
 
 
@@ -170,6 +170,10 @@ export const todoSlice = createSlice({
   //   }),
   // }
 })
+
+export const getTodoListStatus = (state:RootState) => state.todoList.status
+export const getTodoListTodos = (state:RootState) => state.todoList.todos
+export const getTodoListLastOperation = (state:RootState) => state.todoList.lastOperation
 
 export const {
   permanentDelete,

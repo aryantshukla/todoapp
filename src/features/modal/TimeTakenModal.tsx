@@ -1,10 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState ,useCallback} from "react";
 import { useDispatch } from "react-redux";
-import { ModalContext } from "../../context";
-import { Button } from "../button/Button";
+
 import { markTodoDone } from '../todoSlice'
 import { updateEfficieny } from '../Efficiency/efficiencySlice'
+
+import { ModalContext } from "../../context";
+
+import { Button } from "../button/Button";
+
 import { todoType } from "../../types/types";
+
 
 type PropsTimeTakenModal = {
   show:string,
@@ -24,11 +29,11 @@ export const TimeTakenModal = (props:PropsTimeTakenModal) => {
     return null
   }
 
-  const handleChange = (event:React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = useCallback((event:React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     setTimeTaken(event.target.value)
-  }
-  const handleSubmitClick = (event:React.MouseEvent) => {
+  },[])
+  const handleSubmitClick = useCallback((event:React.MouseEvent) => {
     event.preventDefault();
     dispatch(updateEfficieny({
       timeTaken:Number(timeTaken),
@@ -36,11 +41,11 @@ export const TimeTakenModal = (props:PropsTimeTakenModal) => {
     }))
     dispatch(markTodoDone(id))
     handleCancelClick(event)
-  }
-  const handleCancelClick = (event:React.MouseEvent) => {
+  },[dispatch])
+  const handleCancelClick = useCallback((event:React.MouseEvent) => {
     event.preventDefault();
     updateModal({ showModal: 'nomodal', details: {} as todoType })
-  }
+  },[])
 
   return (
     <div className="commonModal askTime modalShow">

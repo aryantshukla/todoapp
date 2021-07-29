@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { todoType } from "../types/types";
 // import { permanentDelete } from "./todoSlice";
 
@@ -9,9 +10,9 @@ export const TodoItemDone = (props:PropsTodoItemDone) => {
 
   const { id, taskName } = props.state
 
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     // dispatch(permanentDelete(id))
-  }
+  },[])
 
   return (
     <div data-key={id} className="taskItem done">

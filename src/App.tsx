@@ -9,6 +9,7 @@ import './App.css';
 import { todoType } from './types/types';
 
 import { updateModalProps } from './types/types';
+import { useCallback } from 'react';
 
 
 function App() {
@@ -21,10 +22,11 @@ function App() {
     setTheme(state => (state === 'light' ? 'dark' : 'light'))
   }
 
-  const updateModal = ({ showModal, details }:updateModalProps) => {
+  const updateModal = useCallback(({ showModal, details }:updateModalProps) => {
     setShowModal(showModal)
     setDetails(details)
-  }
+  },[])
+  
   const classForBlurContainer = showModal === 'nomodal' ? "blurContainer" : "blur"
 
   return (

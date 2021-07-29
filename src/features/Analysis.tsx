@@ -1,13 +1,12 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { RootState } from "../app/store"
 
-import { fetchEfficiency } from "./Efficiency/efficiencySlice"
+import { fetchEfficiency, getEfficiency, getEfficiencyLastOperation } from "./Efficiency/efficiencySlice"
 
 export const Analysis = () => {
 
-  const efficiency = useSelector((state:RootState) => state.efficiency.efficiency)
-  const lastOperation = useSelector((state:RootState) => state.efficiency.lastOperation)
+  const efficiency = useSelector(getEfficiency)
+  const lastOperation = useSelector(getEfficiencyLastOperation)
   const dispatch = useDispatch();
 
   useEffect(() => {

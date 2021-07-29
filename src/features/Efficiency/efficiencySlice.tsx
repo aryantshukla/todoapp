@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { efficiencyServer } from "./efficiency";
 
+import { RootState } from "../../app/store";
+
 type PropsDate = {
   timeRequired:number,
   timeTaken:number
@@ -40,5 +42,10 @@ export const effciencySlice = createSlice({
         }))
   }
 })
+
+
+export const getEfficiency = (state:RootState) => state.efficiency.efficiency
+export const getEfficiencyLastOperation = (state:RootState) => state.efficiency.lastOperation
+
 
 export default effciencySlice.reducer

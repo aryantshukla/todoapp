@@ -1,17 +1,18 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { RootState } from "../app/store"
 import { Analysis } from "./Analysis"
 import { EnterTodo } from "./EnterTodo"
 import { Options } from "./Options"
 import { TodoList } from "./TodoList"
-import { getFromLocalStorage } from './todoSlice'
+import { getFromLocalStorage, getTodoListLastOperation, getTodoListStatus, getTodoListTodos } from './todoSlice'
+
+ 
 
 export const MainSection = () => {
 
-  const todoStatus = useSelector((state:RootState) => state.todoList.status)
-  const todos = useSelector((state:RootState) => state.todoList.todos)
-  const lastOperation = useSelector((state:RootState) => state.todoList.lastOperation)
+  const todoStatus = useSelector(getTodoListStatus)
+  const todos = useSelector(getTodoListTodos)
+  const lastOperation = useSelector(getTodoListLastOperation)
   const dispatch = useDispatch();
 
   useEffect(() => {

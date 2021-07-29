@@ -1,6 +1,8 @@
 import { nanoid } from 'nanoid'
 import { useDispatch } from 'react-redux'
 
+import React, { useState,useCallback } from 'react'
+
 import { saveOnLocalStorage } from '../todoSlice'
 
 import { TaskName } from './TaskName'
@@ -9,9 +11,9 @@ import { Deadline } from './Deadline'
 import { TimeRequired } from './TimeRequired'
 import { Description } from './Description'
 import { Button } from '../button/Button'
-import React, { useState } from 'react'
 
 import { INITIAL_STATE } from '../../dataStates'
+
 import { todoType } from '../../types/types'
 
 export const Form = () => {
@@ -19,14 +21,14 @@ export const Form = () => {
   const dispatch = useDispatch();
   const [formState, setFormState] = useState(() => (INITIAL_STATE))
 
-  const handleChange = (event:React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = useCallback((event:React.ChangeEvent<HTMLInputElement>) => {
     setFormState(formState => ({
       ...formState,
       [event.target.name]: event.target.value
     }))
-  }
+  },[])
 
-  const handleSubmit = (event:React.MouseEvent) => {
+  const handleSubmit = useCallback((event:React.MouseEvent) => {
     
     event.preventDefault();
    
@@ -53,13 +55,13 @@ export const Form = () => {
     dispatch(saveOnLocalStorage({ ...formState, id: nanoid() } as todoType))
       handleReset();
     
-  }
+  },[])
 
-  const handleReset = (event?:React.MouseEvent) => {
+  const handleReset = useCallback((event?:React.MouseEvent) => {
     if (event)
       event.preventDefault()
     setFormState(INITIAL_STATE)
-  }
+  },[])
 
   return (
     <form className="enterTask">

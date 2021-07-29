@@ -1,17 +1,18 @@
 import React, { useContext } from "react"
+import { useCallback } from "react"
 import { useSelector } from "react-redux"
-import { RootState } from "../app/store"
 import { ModalContext } from '../context'
 import { todoType } from "../types/types"
+import { getTodoListStatus } from "./todoSlice"
 
 
 export const TodoItem = (props:{state:todoType}) => {
 
   const { priority, taskName, deadLine, id } = props.state
   const { updateModal } = useContext(ModalContext)
-  const todoStatus = useSelector((state:RootState) => state.todoList.status)
+  const todoStatus = useSelector(getTodoListStatus)
 
-  const handleMarkDone = (event:React.MouseEvent) => {
+  const handleMarkDone = useCallback((event:React.MouseEvent) => {
     event.preventDefault();
     if (todoStatus === 'idle') {
       updateModal({
@@ -19,14 +20,16 @@ export const TodoItem = (props:{state:todoType}) => {
         details: { ...props.state }
       })
     }
-  }
-  const showModal = (event:React.MouseEvent) => {
+  },[])
+  
+  const showModal = useCallback((event:React.MouseEvent) => {
     event.preventDefault();
     updateModal({
       showModal: 'infomodal',
       details: props.state
     })
-  }
+  },[])
+
   let priorityClass = 'p3';
   if (priority === 'HIGH') {
     priorityClass = 'p1'
