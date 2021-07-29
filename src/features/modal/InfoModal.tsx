@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState,useCallback } from "react";
+import React, { useContext, useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 
 import { editFromLocalStorage, getTodoListStatus } from '../todoSlice'
@@ -7,9 +7,9 @@ import { ModalContext } from '../../context'
 
 import { Button } from "../button/Button";
 
-import { todoType,PropsInfoModal } from "../../types/types";
+import { todoType, PropsInfoModal } from "../../types/types";
 
-export const InfoModal = (props:PropsInfoModal) => {
+export const InfoModal = (props: PropsInfoModal) => {
 
   const { show } = props
   const { updateModal } = useContext(ModalContext)
@@ -26,29 +26,29 @@ export const InfoModal = (props:PropsInfoModal) => {
   }
   const { taskName, deadLine, description, timeRequired } = todoDetails;
 
-  const hideModal = useCallback((event:React.MouseEvent) => {
+  const hideModal = useCallback((event: React.MouseEvent) => {
     event.preventDefault();
     updateModal({ showModal: 'nomodal', details: {} as todoType })
-  },[])
+  }, [])
 
-  const handleChange = useCallback((event :React.ChangeEvent) => {
+  const handleChange = useCallback((event: React.ChangeEvent) => {
     event.preventDefault()
     const eventTarget = event.target as HTMLInputElement
     setTodoDetails((state) => ({
       ...state,
       [eventTarget.name]: eventTarget.value
     }))
-  },[])
+  }, [])
 
-  const handleSaveChanges = useCallback( (event:React.MouseEvent) => {
+  const handleSaveChanges = useCallback((event: React.MouseEvent) => {
     event.preventDefault();
     if (todoStatus === 'idle') {
       dispatch(editFromLocalStorage({ ...todoDetails }))
     }
     hideModal(event);
-  },[dispatch])
+  }, [dispatch])
 
-  const handleMarkDone = (event:React.MouseEvent) => {
+  const handleMarkDone = (event: React.MouseEvent) => {
     event.preventDefault();
     updateModal({ showModal: 'timetakenmodal', details: { ...props.details } })
   }

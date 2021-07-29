@@ -4,7 +4,7 @@ import './App.css';
 import moon from './moon.png'
 import sun from './sun.png'
 
-export const Header = (props:PropsHeaderType) => {
+export const Header = (props: PropsHeaderType) => {
 
   return (
     <div className="headerContainer">

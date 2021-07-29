@@ -1,11 +1,11 @@
 
 export type PropsTypeFrom = {
-  value:string
-  handleChange:(event:React.ChangeEvent<HTMLInputElement>)=>void
+  value: string
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 export type todoType = {
   taskName: string,
-  priority: "LOW"|'HIGH'|'MEDIUM',
+  priority: "LOW" | 'HIGH' | 'MEDIUM',
   timeRequired: string,
   description: string,
   deadLine: string,
@@ -13,18 +13,18 @@ export type todoType = {
   done: string,
 }
 export type PropsTypeButton = {
-  onClick:(event:React.MouseEvent)=>void,
-  type?:'button'|'submit'|'reset',
-  children:React.ReactNode
+  onClick: (event: React.MouseEvent) => void,
+  type?: 'button' | 'submit' | 'reset',
+  children: React.ReactNode
 }
 export type updateModalProps = {
-  showModal:string,
-  details:todoType
+  showModal: string,
+  details: todoType
 }
 
 export type PropsHeaderType = {
-  theme:'light'|'dark',
-  onClick:()=>void
+  theme: 'light' | 'dark',
+  onClick: () => void
 }
 
-export type PropsInfoModal = {show:string,details:todoType}
+export type PropsInfoModal = { show: string, details: todoType }

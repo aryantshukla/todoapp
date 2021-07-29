@@ -8,7 +8,7 @@ export const Options = () => {
   const dispatch = useDispatch()
   const todoStatus = useSelector(getTodoListStatus)
 
-  const handleClick = useCallback((event:React.MouseEvent) => {
+  const handleClick = useCallback((event: React.MouseEvent) => {
     if (todoStatus !== 'idle') {
       return
     }
@@ -25,8 +25,8 @@ export const Options = () => {
     if (eventTarget.id === "op5") {
       dispatch(sortTodosByDeadlineLate())
     }
-  },[dispatch])
-  
+  }, [dispatch])
+
   return (
     <>
       <h1>Options</h1>

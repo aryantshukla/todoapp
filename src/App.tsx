@@ -1,4 +1,4 @@
-import { useState,useCallback } from 'react';
+import { useState, useCallback } from 'react';
 
 import { ModalContext } from './context';
 
@@ -7,7 +7,7 @@ import { Header } from './Header';
 import { InfoModal } from './features/modal/InfoModal'
 import { TimeTakenModal } from './features/modal/TimeTakenModal';
 
-import { todoType,updateModalProps } from './types/types';
+import { todoType, updateModalProps } from './types/types';
 
 import './App.css';
 
@@ -15,16 +15,16 @@ function App() {
 
   const [showModal, setShowModal] = useState('nomodal')
   const [details, setDetails] = useState<todoType>({} as todoType)
-  const [theme, setTheme] = useState<'light'|'dark'>('light')
+  const [theme, setTheme] = useState<'light' | 'dark'>('light')
 
   const handleChangeTheme = () => {
     setTheme(state => (state === 'light' ? 'dark' : 'light'))
   }
 
-  const updateModal = useCallback(({ showModal, details }:updateModalProps) => {
+  const updateModal = useCallback(({ showModal, details }: updateModalProps) => {
     setShowModal(showModal)
     setDetails(details)
-  },[])
+  }, [])
 
   const classForBlurContainer = showModal === 'nomodal' ? "blurContainer" : "blur"
 

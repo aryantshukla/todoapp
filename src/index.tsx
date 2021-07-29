@@ -5,7 +5,7 @@ import reportWebVitals from './reportWebVitals';
 
 import App from './App';
 
-import {store} from './app/store';
+import { store } from './app/store';
 
 
 import './App.css';

@@ -1,6 +1,6 @@
-import {PropsTypeFrom} from '../../types/types'
+import { PropsTypeFrom } from '../../types/types'
 
-export const TaskName = (props:PropsTypeFrom) => {
+export const TaskName = (props: PropsTypeFrom) => {
   const { value, handleChange } = props
   return (
     <div className="formElement">

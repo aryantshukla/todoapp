@@ -1,16 +1,16 @@
-import { useEffect,useState } from "react"
+import { useEffect, useState } from "react"
 
-export const Error = (props:{msg:string}) => {
+export const Error = (props: { msg: string }) => {
 
-  const [showError,setShowError] = useState(true)
+  const [showError, setShowError] = useState(true)
 
-  useEffect(()=>{
-    if(showError===true){
-      setTimeout(()=>setShowError(false),6000)
+  useEffect(() => {
+    if (showError === true) {
+      setTimeout(() => setShowError(false), 6000)
     }
-  },[])
-  
-  if(showError===false){
+  }, [])
+
+  if (showError === false) {
     return null
   }
 

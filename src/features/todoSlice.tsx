@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { RootState } from "../app/store";
-import {todoType} from '../types/types'
+import { todoType } from '../types/types'
 
 import { getNumberFromPriority, getNumberofSec } from "../utils/utils";
 
-export const saveOnLocalStorage = createAsyncThunk('todoList/saveOnLocalStorage', async (todo:todoType) => {
+export const saveOnLocalStorage = createAsyncThunk('todoList/saveOnLocalStorage', async (todo: todoType) => {
   const todos = JSON.parse(localStorage.getItem('todos') as string) || []
   todos.push(todo)
   localStorage.setItem('todos', JSON.stringify(todos))
@@ -17,9 +17,9 @@ export const getFromLocalStorage = createAsyncThunk('todoList/getFromLocalStorag
   return todos
 })
 
-export const editFromLocalStorage = createAsyncThunk('todoList/editFromLocalStorage', async (todo:todoType) => {
-  let todos:todoType[] = JSON.parse(localStorage.getItem('todos') as string) || []
-  todos = todos.map((item:todoType) => {
+export const editFromLocalStorage = createAsyncThunk('todoList/editFromLocalStorage', async (todo: todoType) => {
+  let todos: todoType[] = JSON.parse(localStorage.getItem('todos') as string) || []
+  todos = todos.map((item: todoType) => {
     if (item.id === todo.id) {
       return todo
     }
@@ -29,9 +29,9 @@ export const editFromLocalStorage = createAsyncThunk('todoList/editFromLocalStor
   return todos
 })
 
-export const markTodoDone = createAsyncThunk('todoList/markTodoDone', async (id:string) => {
+export const markTodoDone = createAsyncThunk('todoList/markTodoDone', async (id: string) => {
   let todos = JSON.parse(localStorage.getItem('todos') as string) || []
-  todos = todos.map((item:todoType) => {
+  todos = todos.map((item: todoType) => {
     if (item.id === id) {
       return {
         ...item,
@@ -44,11 +44,11 @@ export const markTodoDone = createAsyncThunk('todoList/markTodoDone', async (id:
   return todos
 })
 
-const initialState:{
-  todos:todoType[],
-  status:string,
-  error:string|null,
-  lastOperation:string
+const initialState: {
+  todos: todoType[],
+  status: string,
+  error: string | null,
+  lastOperation: string
 } = {
   todos: [],
   status: 'idle',
@@ -60,14 +60,14 @@ export const todoSlice = createSlice({
   name: "todoList",
   initialState,
   reducers: {
-    permanentDelete: (state, action:PayloadAction<string>) => ({
+    permanentDelete: (state, action: PayloadAction<string>) => ({
       ...state,
-      todos: state.todos.filter((todo:todoType) => todo.id !== action.payload)
+      todos: state.todos.filter((todo: todoType) => todo.id !== action.payload)
     }),
 
     sortTodosByPriorityHigh: (state) => {
       const todos = Array.from(state.todos)
-      todos.sort(function (a:todoType, b:todoType) {
+      todos.sort(function (a: todoType, b: todoType) {
         const numA = getNumberFromPriority(a.priority)
         const numB = getNumberFromPriority(b.priority)
         return numB - numA
@@ -80,7 +80,7 @@ export const todoSlice = createSlice({
     },
     sortTodosByPriorityLow: (state) => {
       const todos = Array.from(state.todos)
-      todos.sort(function (a:todoType, b:todoType) {
+      todos.sort(function (a: todoType, b: todoType) {
         const numA = getNumberFromPriority(a.priority)
         const numB = getNumberFromPriority(b.priority)
         return numA - numB
@@ -93,7 +93,7 @@ export const todoSlice = createSlice({
     },
     sortTodosByDeadlineEarly: (state) => {
       const todos = Array.from(state.todos)
-      todos.sort(function (a:todoType, b:todoType) {
+      todos.sort(function (a: todoType, b: todoType) {
         const numA = getNumberofSec(a.deadLine)
         const numB = getNumberofSec(b.deadLine)
         return numA - numB
@@ -106,7 +106,7 @@ export const todoSlice = createSlice({
     },
     sortTodosByDeadlineLate: (state) => {
       const todos = Array.from(state.todos)
-      todos.sort(function (a:todoType, b:todoType) {
+      todos.sort(function (a: todoType, b: todoType) {
         const numA = getNumberofSec(a.deadLine)
         const numB = getNumberofSec(b.deadLine)
         return numB - numA
@@ -118,8 +118,8 @@ export const todoSlice = createSlice({
       })
     }
   },
-  extraReducers: (builder) =>{
-    builder.addCase(getFromLocalStorage.fulfilled,(state, action) => ({
+  extraReducers: (builder) => {
+    builder.addCase(getFromLocalStorage.fulfilled, (state, action) => ({
       ...state,
       status: 'idle',
       lastOperation: 'fetch',
@@ -172,9 +172,9 @@ export const todoSlice = createSlice({
   // }
 })
 
-export const getTodoListStatus = (state:RootState) => state.todoList.status
-export const getTodoListTodos = (state:RootState) => state.todoList.todos
-export const getTodoListLastOperation = (state:RootState) => state.todoList.lastOperation
+export const getTodoListStatus = (state: RootState) => state.todoList.status
+export const getTodoListTodos = (state: RootState) => state.todoList.todos
+export const getTodoListLastOperation = (state: RootState) => state.todoList.lastOperation
 
 export const {
   permanentDelete,

@@ -1,7 +1,7 @@
-import {PropsTypeFrom} from '../../types/types'
+import { PropsTypeFrom } from '../../types/types'
 
 
-export const Priority = (props:PropsTypeFrom) => {
+export const Priority = (props: PropsTypeFrom) => {
   const { handleChange } = props
   return (
     <div className="formElement">

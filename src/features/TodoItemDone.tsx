@@ -4,16 +4,16 @@ import { useCallback } from "react";
 
 import { todoType } from "../types/types";
 type PropsTodoItemDone = {
-  state:todoType
+  state: todoType
 }
 
-export const TodoItemDone = (props:PropsTodoItemDone) => {
+export const TodoItemDone = (props: PropsTodoItemDone) => {
 
   const { id, taskName } = props.state
 
   const handleClick = useCallback(() => {
     // dispatch(permanentDelete(id))
-  },[])
+  }, [])
 
   return (
     <div data-key={id} className="taskItem done">

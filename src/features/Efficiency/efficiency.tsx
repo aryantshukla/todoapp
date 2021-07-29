@@ -1,7 +1,7 @@
 class Efficiency {
-  private len:number = 0
+  private len: number = 0
   private efficiency = 0
-  private kFactor:number = 0
+  private kFactor: number = 0
   loadEfficiency() {
     if (localStorage.len) {
       this.len = Number(localStorage.getItem('len'))
@@ -15,24 +15,24 @@ class Efficiency {
     this.updateEfficieny();
   }
 
-  getEfficiency(){
+  getEfficiency() {
     return this.efficiency
   }
 
-  addNewFinishedItem(iTime:number, tTime:number) {
+  addNewFinishedItem(iTime: number, tTime: number) {
     this.len++
     this.calculateEfficiency(iTime, tTime)
     this.updateEfficieny();
     localStorage.setItem('len', this.len.toString());
   }
 
-  calculatekFactor(len:number) {
+  calculatekFactor(len: number) {
     this.kFactor = 10 * (10 - Math.floor(len / 10))
     this.kFactor = Math.max(this.kFactor, 10)
     localStorage.setItem('kFactor', this.kFactor.toString())
   }
 
-  calculateEfficiency(iTime:number, tTime:number) {
+  calculateEfficiency(iTime: number, tTime: number) {
     iTime = Number(iTime)
     tTime = Number(tTime)
     if (this.len === 0)
