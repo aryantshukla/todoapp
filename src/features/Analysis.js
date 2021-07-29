@@ -1,4 +1,20 @@
+import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+
+import { fetchEfficiency } from "./Efficiency/efficiencySlice"
+
 export const Analysis = () => {
+
+  const efficiency = useSelector(state => state.efficiency.efficiency)
+  const lastOperation = useSelector(state => state.efficiency.lastOperation)
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (lastOperation !== 'fetch') {
+      dispatch(fetchEfficiency())
+    }
+  }, [lastOperation, dispatch])
+
   return (
     <>
       <h1>Analysis:</h1>
@@ -7,7 +23,7 @@ export const Analysis = () => {
         <div className="spec">
           Efficiency Score:
           <div className="rate">
-            <div className="efficiency">0</div>
+            <div className="efficiency">{efficiency}</div>
           </div>
         </div>
         <div className="spec">

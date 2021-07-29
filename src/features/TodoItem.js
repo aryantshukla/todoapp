@@ -1,31 +1,38 @@
 import { useContext } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { markTodoDone } from './todoSlice'
+import { useSelector } from "react-redux"
 import { ModalContext } from '../context.js'
 
 export const TodoItem = (props) => {
 
   const { priority, taskName, deadLine, id } = props.state
   const { updateModal } = useContext(ModalContext)
-  const dispatch = useDispatch()
   const todoStatus = useSelector(state => state.todoList.status)
 
   const handleMarkDone = (event) => {
     event.preventDefault();
     if (todoStatus === 'idle') {
-      dispatch(markTodoDone(id))
+      updateModal({
+        showModal: 'timetakenmodal',
+        details: { ...props.state }
+      })
     }
   }
   const showModal = (event) => {
     event.preventDefault();
     updateModal({
-      showModal: 1,
+      showModal: 'infomodal',
       details: props.state
     })
   }
+  let priorityClass = 'p3';
+  if (priority === 'HIGH') {
+    priorityClass = 'p1'
+  } else if (priority === 'MEDIUM') {
+    priorityClass = 'p2'
+  }
 
   return (
-    <div className={`taskItem ${priority}`} data-key={id}>
+    <div className={`taskItem ${priorityClass}`} data-key={id}>
       <p>{taskName}</p>
       <hr className="divisor" />
       <span>{`DeadLine:${deadLine}`}</span>

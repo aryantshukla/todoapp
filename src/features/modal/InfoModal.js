@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux'
-
-import { markTodoDone, editFromLocalStorage } from '../todoSlice'
+import { editFromLocalStorage } from '../todoSlice'
 
 import { ModalContext } from '../../context.js'
+import { Button } from "../button/Button";
 
 export const InfoModal = (props) => {
 
@@ -17,14 +17,14 @@ export const InfoModal = (props) => {
     setTodoDetails(props.details)
   }, [props.details])
 
-  if (!show) {
+  if (show !== 'infomodal') {
     return null;
   }
-  const { taskName, deadLine, id, description, timeRequired } = todoDetails;
+  const { taskName, deadLine, description, timeRequired } = todoDetails;
 
   const hideModal = (event) => {
     event.preventDefault();
-    updateModal({ showModal: 0, details: {} })
+    updateModal({ showModal: 'nomodal', details: {} })
   }
 
   const handleChange = (event) => {
@@ -45,10 +45,7 @@ export const InfoModal = (props) => {
 
   const handleMarkDone = (event) => {
     event.preventDefault();
-    if (todoStatus === 'idle') {
-      dispatch(markTodoDone(id))
-    }
-    hideModal(event);
+    updateModal({ showModal: 'timetakenmodal', details: { ...props.details } })
   }
 
 
@@ -60,20 +57,20 @@ export const InfoModal = (props) => {
       </div>
       <div className="modalDescription">
         <em>Description: </em>
-        <input value={description} name="description" onChange={handleChange}></input>
+        <input value={description} name="description" onChange={handleChange} />
       </div>
       <div className="modalIdealTime">
         <em>Ideal Time to Finish (in minutes): </em>
-        <input type="number" value={timeRequired} name="timeRequired"></input>
+        <input type="number" value={timeRequired} name="timeRequired" onChange={handleChange} />
       </div>
       <div className="modalDeadline">
         <em>Deadline: </em>
-        <input value={deadLine} type="date" name="deadLine"></input>
+        <input value={deadLine} type="date" name="deadLine" onChange={handleChange} />
       </div>
       <div className="btnContainer">
-        <button type="close" className="close btn" onClick={hideModal}>Close</button>
-        <button className="markDone btn" onClick={handleMarkDone}>Mark as Done</button>
-        <button type="submit" className="saveChanges btn" onClick={handleSaveChanges}>Save Changes</button>
+        <Button onClick={hideModal}>Close</Button>
+        <Button onClick={handleMarkDone}>Mark as Done</Button>
+        <Button type="submit" onClick={handleSaveChanges}>Save Changes</Button>
       </div>
     </div>
   )
