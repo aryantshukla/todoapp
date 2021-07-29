@@ -1,7 +1,7 @@
 import { TodoItem } from "./TodoItem"
 import { TodoItemDone } from "./TodoItemDone"
-import { todoType } from "../types/types"
 
+import { todoType } from "../types/types"
 type PropsTodoType = {
   todos:todoType[]
 }

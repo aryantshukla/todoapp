@@ -1,10 +1,11 @@
-import React, { useContext } from "react"
-import { useCallback } from "react"
+import React, { useContext ,useCallback} from "react"
 import { useSelector } from "react-redux"
-import { ModalContext } from '../context'
-import { todoType } from "../types/types"
+
 import { getTodoListStatus } from "./todoSlice"
 
+import { ModalContext } from '../context'
+
+import { todoType } from "../types/types"
 
 export const TodoItem = (props:{state:todoType}) => {
 

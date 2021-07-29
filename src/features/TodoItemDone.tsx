@@ -1,7 +1,8 @@
 import { useCallback } from "react";
-import { todoType } from "../types/types";
+
 // import { permanentDelete } from "./todoSlice";
 
+import { todoType } from "../types/types";
 type PropsTodoItemDone = {
   state:todoType
 }

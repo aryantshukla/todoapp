@@ -1,16 +1,15 @@
-import { useState } from 'react';
+import { useState,useCallback } from 'react';
+
+import { ModalContext } from './context';
+
 import { MainSection } from './features/MainSection';
 import { Header } from './Header';
 import { InfoModal } from './features/modal/InfoModal'
-import { ModalContext } from './context';
 import { TimeTakenModal } from './features/modal/TimeTakenModal';
 
+import { todoType,updateModalProps } from './types/types';
+
 import './App.css';
-import { todoType } from './types/types';
-
-import { updateModalProps } from './types/types';
-import { useCallback } from 'react';
-
 
 function App() {
 
@@ -26,7 +25,7 @@ function App() {
     setShowModal(showModal)
     setDetails(details)
   },[])
-  
+
   const classForBlurContainer = showModal === 'nomodal' ? "blurContainer" : "blur"
 
   return (

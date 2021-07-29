@@ -1,11 +1,13 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState,useCallback } from "react";
 import { useDispatch, useSelector } from 'react-redux'
+
 import { editFromLocalStorage, getTodoListStatus } from '../todoSlice'
 
 import { ModalContext } from '../../context'
+
 import { Button } from "../button/Button";
+
 import { todoType,PropsInfoModal } from "../../types/types";
-import { useCallback } from "react";
 
 export const InfoModal = (props:PropsInfoModal) => {
 

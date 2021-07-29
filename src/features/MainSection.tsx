@@ -1,12 +1,12 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
+
+import { getFromLocalStorage, getTodoListLastOperation, getTodoListStatus, getTodoListTodos } from './todoSlice'
+
 import { Analysis } from "./Analysis"
 import { EnterTodo } from "./EnterTodo"
 import { Options } from "./Options"
 import { TodoList } from "./TodoList"
-import { getFromLocalStorage, getTodoListLastOperation, getTodoListStatus, getTodoListTodos } from './todoSlice'
-
- 
 
 export const MainSection = () => {
 

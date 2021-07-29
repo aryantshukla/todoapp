@@ -1,8 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { getNumberFromPriority, getNumberofSec } from "../utils/utils";
+
 import { RootState } from "../app/store";
 import {todoType} from '../types/types'
 
+import { getNumberFromPriority, getNumberofSec } from "../utils/utils";
 
 export const saveOnLocalStorage = createAsyncThunk('todoList/saveOnLocalStorage', async (todo:todoType) => {
   const todos = JSON.parse(localStorage.getItem('todos') as string) || []

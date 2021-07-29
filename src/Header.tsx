@@ -1,8 +1,8 @@
+import { PropsHeaderType } from './types/types';
+
 import './App.css';
 import moon from './moon.png'
 import sun from './sun.png'
-
-import { PropsHeaderType } from './types/types';
 
 export const Header = (props:PropsHeaderType) => {
 

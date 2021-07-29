@@ -1,4 +1,3 @@
-import { MouseEventHandler } from "react"
 
 export type PropsTypeFrom = {
   value:string
