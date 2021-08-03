@@ -25,14 +25,16 @@ export const TimeTakenModal = (props: PropsTimeTakenModal) => {
   const { show } = props
   const { id, timeRequired } = props.details
 
-  if (show !== 'timetakenmodal') {
-    return null
-  }
-
   const handleChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     setTimeTaken(event.target.value)
   }, [])
+
+  const handleCancelClick = useCallback((event: React.MouseEvent) => {
+    event.preventDefault();
+    updateModal({ showModal: 'nomodal', details: {} as todoType })
+  }, [updateModal])
+
   const handleSubmitClick = useCallback((event: React.MouseEvent) => {
     event.preventDefault();
     dispatch(updateEfficieny({
@@ -41,17 +43,19 @@ export const TimeTakenModal = (props: PropsTimeTakenModal) => {
     }))
     dispatch(markTodoDone(id))
     handleCancelClick(event)
-  }, [dispatch])
-  const handleCancelClick = useCallback((event: React.MouseEvent) => {
-    event.preventDefault();
-    updateModal({ showModal: 'nomodal', details: {} as todoType })
-  }, [])
+  }, [dispatch, handleCancelClick, id, timeTaken, timeRequired])
+
+
+  if (show !== 'timetakenmodal') {
+    return null
+  }
 
   return (
     <div className="commonModal askTime modalShow">
       <div className="timeForm formElement">
         <label> Please Enter Time taken to finish task: </label>
         <input
+          required
           autoFocus
           type="number"
           name="timetaken"

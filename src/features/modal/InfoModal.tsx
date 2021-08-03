@@ -21,15 +21,10 @@ export const InfoModal = (props: PropsInfoModal) => {
     setTodoDetails(props.details)
   }, [props.details])
 
-  if (show !== 'infomodal') {
-    return null;
-  }
-  const { taskName, deadLine, description, timeRequired } = todoDetails;
-
   const hideModal = useCallback((event: React.MouseEvent) => {
     event.preventDefault();
     updateModal({ showModal: 'nomodal', details: {} as todoType })
-  }, [])
+  }, [updateModal])
 
   const handleChange = useCallback((event: React.ChangeEvent) => {
     event.preventDefault()
@@ -46,7 +41,13 @@ export const InfoModal = (props: PropsInfoModal) => {
       dispatch(editFromLocalStorage({ ...todoDetails }))
     }
     hideModal(event);
-  }, [dispatch])
+  }, [dispatch, todoStatus, hideModal, todoDetails])
+
+  if (show !== 'infomodal') {
+    return null;
+  }
+
+  const { taskName, deadLine, description, timeRequired } = todoDetails;
 
   const handleMarkDone = (event: React.MouseEvent) => {
     event.preventDefault();

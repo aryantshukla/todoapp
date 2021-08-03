@@ -60,10 +60,14 @@ export const todoSlice = createSlice({
   name: "todoList",
   initialState,
   reducers: {
-    permanentDelete: (state, action: PayloadAction<string>) => ({
-      ...state,
-      todos: state.todos.filter((todo: todoType) => todo.id !== action.payload)
-    }),
+    permanentDelete: (state, action: PayloadAction<string>) => {
+      const todos = Array.from(state.todos).filter((todo: todoType) => todo.id !== action.payload)
+      localStorage.setItem('todos', JSON.stringify(todos))
+      return ({
+        ...state,
+        todos
+      })
+    },
 
     sortTodosByPriorityHigh: (state) => {
       const todos = Array.from(state.todos)
@@ -141,7 +145,6 @@ export const todoSlice = createSlice({
       lastOperation: 'edit',
       status: 'loading'
     }))
-
     builder.addCase(editFromLocalStorage.fulfilled, (state, action) => ({
       ...state,
       status: 'idle',
@@ -156,6 +159,7 @@ export const todoSlice = createSlice({
     }))
 
   }
+  //could not use builder with rejected
   // {
   //   [getFromLocalStorage.rejected]: (state, action) => ({
   //     ...state,

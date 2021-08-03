@@ -21,7 +21,7 @@ export const TodoItem = (props: { state: todoType }) => {
         details: { ...props.state }
       })
     }
-  }, [])
+  }, [updateModal, props.state, todoStatus])
 
   const showModal = useCallback((event: React.MouseEvent) => {
     event.preventDefault();
@@ -29,7 +29,7 @@ export const TodoItem = (props: { state: todoType }) => {
       showModal: 'infomodal',
       details: props.state
     })
-  }, [])
+  }, [props.state, updateModal])
 
   let priorityClass = 'p3';
   if (priority === 'HIGH') {

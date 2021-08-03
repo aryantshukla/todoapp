@@ -25,7 +25,7 @@ export const Options = () => {
     if (eventTarget.id === "op5") {
       dispatch(sortTodosByDeadlineLate())
     }
-  }, [dispatch])
+  }, [dispatch, todoStatus])
 
   return (
     <>

@@ -1,14 +1,16 @@
-import { useEffect, useState } from "react"
+import { useContext } from "react"
+import { useEffect } from "react"
+import { ModalContext } from "../../context"
 
-export const Error = (props: { msg: string }) => {
+export const Error = () => {
 
-  const [showError, setShowError] = useState(true)
+  const { showError, updateShowError, errorMessage } = useContext(ModalContext)
 
   useEffect(() => {
     if (showError === true) {
-      setTimeout(() => setShowError(false), 6000)
+      setTimeout(() => updateShowError(''), 6000)
     }
-  }, [])
+  }, [updateShowError, showError])
 
   if (showError === false) {
     return null
@@ -16,7 +18,7 @@ export const Error = (props: { msg: string }) => {
 
   return (
     <div className="errMsg">
-      {props.msg}, Could Update !!!!
+      {errorMessage} Could Update !!!!
     </div>
   )
 

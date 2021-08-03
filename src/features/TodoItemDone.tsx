@@ -1,8 +1,9 @@
 import { useCallback } from "react";
 
-// import { permanentDelete } from "./todoSlice";
+import { permanentDelete } from "./todoSlice";
 
 import { todoType } from "../types/types";
+import { useDispatch } from "react-redux";
 type PropsTodoItemDone = {
   state: todoType
 }
@@ -10,10 +11,11 @@ type PropsTodoItemDone = {
 export const TodoItemDone = (props: PropsTodoItemDone) => {
 
   const { id, taskName } = props.state
+  const dispatch = useDispatch()
 
   const handleClick = useCallback(() => {
-    // dispatch(permanentDelete(id))
-  }, [])
+    dispatch(permanentDelete(id))
+  }, [dispatch, id])
 
   return (
     <div data-key={id} className="taskItem done">
