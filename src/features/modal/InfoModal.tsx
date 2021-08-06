@@ -43,16 +43,18 @@ export const InfoModal = (props: PropsInfoModal) => {
     hideModal(event);
   }, [dispatch, todoStatus, hideModal, todoDetails])
 
+  const handleMarkDone = useCallback((event: React.MouseEvent) => {
+    event.preventDefault();
+    updateModal({ showModal: 'timetakenmodal', details: { ...props.details } })
+  }, [updateModal, props.details])
+
   if (show !== 'infomodal') {
     return null;
   }
 
   const { taskName, deadLine, description, timeRequired } = todoDetails;
 
-  const handleMarkDone = (event: React.MouseEvent) => {
-    event.preventDefault();
-    updateModal({ showModal: 'timetakenmodal', details: { ...props.details } })
-  }
+
 
 
   return (

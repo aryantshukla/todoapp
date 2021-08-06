@@ -1,6 +1,5 @@
 import { Form } from "./form/Form"
 
-
 export const EnterTodo = () => {
   return (
     <aside className="navbar">

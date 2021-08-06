@@ -6,7 +6,6 @@ import App from './App';
 
 import { store } from './app/store';
 
-
 import './App.css';
 
 ReactDOM.render(

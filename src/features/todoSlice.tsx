@@ -159,21 +159,6 @@ export const todoSlice = createSlice({
     }))
 
   }
-  //could not use builder with rejected
-  // {
-  //   [getFromLocalStorage.rejected]: (state, action) => ({
-  //     ...state,
-  //     status: 'failed',
-  //     lastOperation: 'fetch',
-  //     error: action.error.message
-  //   }),
-  //   [editFromLocalStorage.rejected]: (state, action) => ({
-  //     ...state,
-  //     status: 'failed',
-  //     lastOperation: 'edit',
-  //     error: action.payload
-  //   }),
-  // }
 })
 
 export const getTodoListStatus = (state: RootState) => state.todoList.status
