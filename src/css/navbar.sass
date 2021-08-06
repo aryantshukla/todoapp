@@ -1,0 +1,52 @@
+.themeContainer[data-theme="light"] .navbar
+  background-color: #eee
+
+.navbar
+  padding-left: 2rem
+  padding-right: 2rem
+
+  &:hover
+    box-shadow: 0px 0px 1.5em var(--mainColor)
+
+  &:hover ~ section
+    border-left: 0px var(--mainColor) solid
+
+.enterTask
+  display: flex
+  flex-direction: column
+
+.selectPriority
+  display: flex
+  flex-direction: column
+  padding-left: 2ch
+
+  & > label:hover
+    text-shadow: 0px 0px 1em var(--mainColor)
+
+.enterTask > label > input:not([type="radio"])
+  width: 80%
+
+.enterTask > .formElement
+  margin: 1ch
+
+label > input:not([type="radio"]):hover
+  box-shadow: 0px 0px 5px var(--mainColor)
+
+.btn
+  margin-top: 3em
+  background-color: var(--btnColor)
+  color: var(--onNeon)
+  width: 10rem
+  height: 2rem
+  align-self: center
+  border-radius: 1em
+
+  &:hover
+    box-shadow: 0px 0px 1em var(--mainColor)
+
+.logo
+  margin: 0px
+
+.formElement
+  display: flex
+  flex-direction: column

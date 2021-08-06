@@ -21,9 +21,9 @@ function App() {
   const [details, setDetails] = useState<todoType>({} as todoType)
   const [theme, setTheme] = useState<'light' | 'dark'>('light')
 
-  const handleChangeTheme = () => {
+  const handleChangeTheme = useCallback(() => {
     setTheme(state => (state === 'light' ? 'dark' : 'light'))
-  }
+  }, [])
 
   const updateModal = useCallback(({ showModal, details }: updateModalProps) => {
     setShowModal(showModal)
@@ -33,7 +33,7 @@ function App() {
   const updateShowError = useCallback((msg: string) => {
     setShowError(error => !error)
     setErrorMessage(msg)
-  }, [setShowError])
+  }, [])
 
   const classForBlurContainer = showModal === 'nomodal' ? "blurContainer" : "blur"
 

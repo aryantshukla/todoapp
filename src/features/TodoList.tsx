@@ -26,12 +26,12 @@ export const TodoList = (props: PropsTodoType) => {
     <section className="taskList">
       <h1 className="task-heading">Your Tasks:</h1>
       <hr />
-      <section className="taskContainer" data-id="notCompleted">
+      <section className="taskContainer" data-id="notCompleted" data-testid='notCompleted'>
         {completed}
       </section>
       <h1 className="task-heading">Completed Tasks:</h1>
       <hr />
-      <section className="taskContainer" data-id="completed">
+      <section className="taskContainer" data-id="completed" data-testid='completed'>
         {notCompleted}
       </section>
 

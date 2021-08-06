@@ -5,29 +5,24 @@ import React, { useState, useCallback } from 'react'
 
 import { saveOnLocalStorage } from '../todoSlice'
 
-import { TaskName } from './TaskName'
-import { Priority } from './Priority'
-import { Deadline } from './Deadline'
-import { TimeRequired } from './TimeRequired'
-import { Description } from './Description'
-import { Button } from '../button/Button'
-
 import { INITIAL_STATE } from '../../dataStates'
 
 import { todoType } from '../../types/types'
 import { useContext } from 'react'
 import { ModalContext } from '../../context'
+import { FormPresentation } from './FormPresentation'
 
 export const Form = () => {
 
   const dispatch = useDispatch();
-  const [formState, setFormState] = useState(() => (INITIAL_STATE))
+  const [formState, setFormState] = useState(INITIAL_STATE)
   const { updateShowError } = useContext(ModalContext)
 
   const handleChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target as HTMLInputElement
     setFormState(formState => ({
       ...formState,
-      [event.target.name]: event.target.value
+      [name]: value
     }))
   }, [])
 
@@ -39,8 +34,7 @@ export const Form = () => {
 
   const handleSubmit = useCallback((event: React.MouseEvent) => {
 
-    event.preventDefault();
-
+    event.preventDefault()
 
     let errorMessage = "";
     if (formState.timeRequired.length === 0) {
@@ -55,6 +49,7 @@ export const Form = () => {
     if (formState.deadLine.length === 0) {
       errorMessage += "deadLine "
     }
+
     if (errorMessage.length !== 0) {
       errorMessage = errorMessage + "are empty "
       updateShowError(errorMessage)
@@ -66,19 +61,12 @@ export const Form = () => {
 
   }, [dispatch, formState, handleReset, updateShowError])
 
-
-
   return (
-    <form className="enterTask">
-
-      <TaskName value={formState.taskName} handleChange={handleChange} />
-      <Priority value={formState.priority} handleChange={handleChange} />
-      <Deadline value={formState.deadLine} handleChange={handleChange} />
-      <TimeRequired value={formState.timeRequired} handleChange={handleChange} />
-      <Description value={formState.description} handleChange={handleChange} />
-      <Button type="submit" onClick={handleSubmit}>Add Task</Button>
-      <Button onClick={handleReset}>Reset</Button>
-
-    </form>
+    <FormPresentation
+      formState={formState}
+      handleChange={handleChange}
+      handleReset={handleReset}
+      handleSubmit={handleSubmit}
+    />
   )
 }

@@ -7,9 +7,9 @@
   --onNeon: black;
   --colorHR: red;
   --btnColor: #39ff14;
-
   background: black;
 }
+
 .themeContainer[data-theme="light"] {
   --mainColor: black;
   --p1: #c02f1d;
@@ -19,9 +19,9 @@
   --onNeon: white;
   --colorHR: #01172f;
   --btnColor: #216b82;
-
   background: white;
 }
+
 .themeContainer {
   position: relative;
   color: var(--mainColor);
@@ -31,17 +31,21 @@
 
 .application {
   height: 80vh;
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: 20% auto 20%;
+  -ms-grid-columns: 20% auto 20%;
+      grid-template-columns: 20% auto 20%;
 }
 
 .application > * {
   height: 80vh;
   overflow-y: scroll;
 }
+
 hr {
   border: 1px var(--colorHR) solid;
 }
+
 .errMsg {
   position: absolute;
   bottom: 1rem;
@@ -53,10 +57,19 @@ hr {
   height: 3rem;
   border-radius: 4px;
   left: 10%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 .blur {
-  filter: blur(1em);
+  -webkit-filter: blur(1em);
+          filter: blur(1em);
 }
+/*# sourceMappingURL=style.css.map */

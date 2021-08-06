@@ -4,16 +4,30 @@
   border-right: 5px var(--mainColor) solid;
   letter-spacing: 1ch;
   text-shadow: 0px 0px 1ch var(--btnColor);
-  animation: bringtext 5s steps(10, end), cursorblink 0.75s step-end infinite;
+  -webkit-animation: bringtext 5s steps(10, end), cursorblink 0.75s step-end infinite;
+          animation: bringtext 5s steps(10, end), cursorblink 0.75s step-end infinite;
 }
+
 .headerContainer {
+  position: -webkit-sticky;
   position: sticky;
   z-index: 1;
   margin-bottom: 1rem;
 }
+
 .logoContainer {
   display: inline-block;
 }
+
+@-webkit-keyframes bringtext {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
 @keyframes bringtext {
   from {
     width: 0%;
@@ -22,6 +36,17 @@
     width: 100%;
   }
 }
+
+@-webkit-keyframes cursorblink {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: var(--mainColor);
+  }
+}
+
 @keyframes cursorblink {
   from,
   to {
@@ -39,6 +64,10 @@
   margin-left: auto;
   display: inline;
 }
+
 .headerContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
+/*# sourceMappingURL=header.css.map */

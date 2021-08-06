@@ -18,7 +18,7 @@ export const TodoItemDone = (props: PropsTodoItemDone) => {
   }, [dispatch, id])
 
   return (
-    <div data-key={id} className="taskItem done">
+    <div data-key={id} className="taskItem done" data-testid='todoItem'>
       <p>{taskName}</p>
       <hr className="divisor" />
       <span>

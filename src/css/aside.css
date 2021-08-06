@@ -1,23 +1,32 @@
 .analysis {
-  order: 3;
+  -webkit-box-ordinal-group: 4;
+      -ms-flex-order: 3;
+          order: 3;
   padding-left: 2rem;
   padding-right: 2rem;
+}
+
+.analysis:hover {
+  -webkit-box-shadow: 0px 0px 1.5em var(--mainColor);
+          box-shadow: 0px 0px 1.5em var(--mainColor);
 }
 
 .themeContainer[data-theme="light"] .analysis {
   background-color: #eee;
 }
 
-.analysis:hover {
-  box-shadow: 0px 0px 1.5em var(--mainColor);
-}
 .analysis:hover ~ section {
   border-right: 0ch var(--mainColor) solid;
 }
 
 .specContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .rate {
@@ -33,16 +42,27 @@
 }
 
 .options {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-line-pack: center;
+      align-content: center;
 }
+
 .option {
-  flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   margin-top: auto;
   margin-bottom: auto;
 }
+
 .option:hover {
   cursor: pointer;
   text-shadow: 0px 0px 1em var(--btnColor);
 }
+/*# sourceMappingURL=aside.css.map */

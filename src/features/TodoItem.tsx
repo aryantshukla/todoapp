@@ -39,12 +39,12 @@ export const TodoItem = (props: { state: todoType }) => {
   }
 
   return (
-    <div className={`taskItem ${priorityClass}`} data-key={id}>
+    <div className={`taskItem ${priorityClass}`} data-key={id} data-testid="todoItem">
       <p>{taskName}</p>
       <hr className="divisor" />
       <span>{`DeadLine:${deadLine}`}</span>
       <span>
-        <i className="material-icons info" onClick={showModal}>info_outline</i>
+        <i className="material-icons info" onClick={showModal} data-testid='info'>info_outline</i>
         <i className="material-icons markDone" onClick={handleMarkDone}>&#xe876; </i>
       </span>
     </div>
